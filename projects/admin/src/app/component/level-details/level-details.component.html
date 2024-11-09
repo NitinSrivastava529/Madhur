@@ -2,32 +2,39 @@
     <div class="row g-4">
         <div class="col-sm-12 col-xl-6">
             <div class="bg-secondary rounded h-100 p-4">
-                <h6 class="mb-4">Level Details</h6>              
-                    <div class="mb-3">                            
-                        <div class="table-responsive" style="max-height: 440px;">
-                            <table class="table text-start align-middle table-bordered table-hover mb-0">
-                                <thead>
-                                    <tr class="text-white">
-                                        <th scope="col">Level</th>
-                                        <th scope="col">Member</th>
-                                        <th scope="col">Total Member</th>
-                                        <th scope="col">Status</th>                                                                                                                                                                                    
+                <div class="divLevel">
+                    @for (index of [1,2,3,4,5,6,7,8,9,10]; track $index) {
+                    <span class="levelShow" *ngIf="level[index]!=0">Level-{{index}} : <b>{{level[index]}}</b></span>
+                    }
+                </div>
+                <div class="mb-3">
+                    <div class="table-responsive" style="max-height: 440px;">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-white">
+                                    <th scope="col">Member Id</th>
+                                    <th scope="col">Member Name</th>
+                                    <th scope="col">Level</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let val of levelInfo;let i=index">
+                                    @if (groupBy(val.levelCount)) {
+                                    <tr style="background: #151414;">
+                                        <td colspan="3">{{'Level - '+val.levelCount}}</td>
                                     </tr>
-                                </thead>
-                                <tbody>                           
-                                    <ng-container *ngFor="let val of levelInfo;let i=index">
-                                        <tr [ngClass]="(val.status=='Achieved')?'text-success':'-'">                                           
-                                            <td>{{val.level}}</td>                                                                                                                                                                                                                                                                             
-                                            <td>{{val.member}}</td>                                                                                                                                                                                                                                                                             
-                                            <td>{{val.totalMember}}</td>                                                                                                                                                                                                                                                                             
-                                            <td>{{val.status}}</td>                                                                                                                                                                                                                                                                             
-                                        </tr>
-                                    </ng-container>                                                                   
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>                                                    
-            </div>            
-        </div>    
+                                    }
+                                    <tr [ngClass]="(val.status=='Achieved')?'text-success':'-'">
+                                        <td>{{val.memberId}}</td>
+                                        <td>{{val.memberName}}</td>
+                                        <td>{{val.levelCount}}</td>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { AfterContentChecked, ChangeDetectorRef, Component, inject, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { GlobalService } from '../../services/global.service';
 
 @Component({
   selector: 'app-level-details',
@@ -8,15 +10,40 @@ import { Component } from '@angular/core';
   templateUrl: './level-details.component.html',
   styleUrl: './level-details.component.css'
 })
-export class LevelDetailsComponent {
-  levelInfo:any=[
-    {level:1, member:10,totalMember:15,status:'Achieved'},
-    {level:2, member:100,totalMember:210,status:'Achieved'},
-    {level:3, member:1000,totalMember:2134,status:'Achieved'},
-    {level:4, member:10000,totalMember:1143,status:'Not Achieved'},
-    {level:5, member:100000,totalMember:212,status:'Not Achieved'},
-    {level:6, member:1000000,totalMember:443,status:'Not Achieved'},
-    {level:7, member:10000000,totalMember:2453,status:'Not Achieved'},
-    {level:8, member:100000000,totalMember:24533,status:'Not Achieved'},
-  ];
+export class LevelDetailsComponent implements OnInit,AfterContentChecked {
+  levelInfo: any = [];
+  global = inject(GlobalService);
+  _http = inject(HttpClient);
+  cdr=inject(ChangeDetectorRef);
+  temp:string="";
+  level:any={1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0,10:0};
+  ngOnInit(): void {
+      this.LevelWiseMember();  
+      
+  }
+  ngAfterContentChecked(): void {
+    this.level={1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0,10:0};
+    this.cdr.detectChanges()
+  }
+  groupBy(value:string){
+    this.level[parseInt(value)]++;   
+    if(this.temp!=value){    
+      this.temp=value;
+      return true
+    }
+    else
+    {
+      return false
+    }
+  }
+  LevelWiseMember() {
+    this._http.get(this.global.baseUrl + 'api/Member/LevelWiseMember', {}).subscribe({
+      next: (data) => {
+        this.levelInfo = data;
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
+  }
 }
