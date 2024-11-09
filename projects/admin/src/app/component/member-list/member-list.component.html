@@ -1,0 +1,77 @@
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Manage Members</h6>
+                <div class="mb-3">
+                    <div class="row g-4">
+                        <div class="col-sm-12 col-xl-4">
+                            <div class="input-group mb-3">
+                                <input type="text"  [(ngModel)]="filterObj.mobile" class="form-control" placeholder="Mobile Number"
+                                    aria-label="Mobile Number" aria-describedby="basic-addon2">
+                                <button type="submit" (click)="getByMobileNo()" class="btn btn-primary">Get Member</button>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-xl-3">
+                            <input type="text" (keyup)="filterData($event)" class="form-control"
+                                placeholder="Search.." />
+                        </div>
+                        <div class="col-sm-12 col-xl-5">
+
+                        </div>
+                    </div>
+
+                    <div class="table-responsive" style="max-height: 500px;">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-white">
+                                    <th scope="col">#</th>
+                                    <th scope="col">E-Pin</th>
+                                    <th scope="col">MemberId</th>
+                                    <th scope="col">Member Name</th>
+                                    <th scope="col">Mobile No</th>
+                                    <th scope="col">Referral</th>
+                                    <th scope="col">Reg. Date</th>
+                                    <th scope="col" style="width: 1%;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let val of memberInfo;let i=index">
+                                    <tr *ngIf="tempGroup(val.refId)" style="background: #151414;">
+                                        <td colspan="8">Referral : {{val.refId}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{(10*(filterObj.pageNo-1))+(i+1)}}</td>
+                                        <td>{{val.regPin}}</td>
+                                        <td>{{val.memberId}}</td>
+                                        <td>{{val.memberName}}</td>
+                                        <td>{{val.mobileNo}}</td>
+                                        <td>{{val.refId}}</td>
+                                        <td>{{val.creationDate|date:'dd-mm-yyyy'}}</td>
+                                        <td>
+                                            <div style="display: flex;align-items:center;">
+                                                <a routerLink="/member-details/{{val.memberId}}"
+                                                    class="btn btn-sm btn-primary m-2"><i class="fa fa-eye"></i></a>
+                                                <div class="form-check form-switch">
+                                                    <input (change)="UpdateStatus(val.memberId)"
+                                                        class="form-check-input"
+                                                        [checked]="val.isActive=='Y'?true:false" type="checkbox"
+                                                        role="switch" id="flexSwitchCheckDefault">
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                        <div class="btn-group pull-right" role="group" style="margin-top: 10px;">
+                            <button type="button" class="btn btn-danger btn-sm" (click)="getPrev()">>Prev</button>
+                            <input type="text" id="txtPageNo" class="form-control" [(ngModel)]="filterObj.pageNo"/>
+                            <button type="button" class="btn btn-success btn-sm" (click)="getNext()">Next></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

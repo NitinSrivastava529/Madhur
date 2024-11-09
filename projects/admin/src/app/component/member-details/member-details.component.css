@@ -1,0 +1,21 @@
+table td{
+    padding-left: 5px;
+}
+.level{
+    color: rgb(43, 238, 43);
+    margin-left: 10px;
+}
+.bg-success{
+    color:  rgb(43, 238, 43);
+}
+.loading{
+    width: 35px;
+    position: absolute;
+    margin-top:-8px;
+    margin-left:10px;
+}
+#loadingContent{
+    position: absolute;
+    right: 23%;
+    top: 40%;
+}

@@ -1,0 +1,111 @@
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-5">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Member Profile Details &nbsp;: &nbsp;
+                <label class="level">Level : {{LevelCount[0].level}}</label>
+                <label class="level">:  Total Member : {{LevelCount[0].total}}</label>
+                    
+                </h6>
+
+                <div class="table-responsive">
+                    <table class="table text-start align-middle table-bordered table-hover mb-0">
+                        <tr>
+                            <td>E-Pin</td>
+                            <td>:</td>
+                            <td>{{Info.regPin}}</td>
+                        </tr>
+                        <tr>
+                            <td>Member Id</td>
+                            <td>:</td>
+                            <td>{{Info.memberId}}</td>
+                        </tr>
+                        <tr>
+                            <td>Member Name</td>
+                            <td>:</td>
+                            <td>{{Info.memberName}}</td>
+                        </tr>                      
+                        <tr>
+                            <td>Date of Birth</td>
+                            <td>:</td>
+                            <td>{{Info.dob|date:'dd-mm-yyyy'}}</td>                           
+                        </tr>
+                        <tr>
+                            <td>Mobile No</td>
+                            <td>:</td>
+                            <td>{{Info.mobileNo}}</td>
+                        </tr>
+                        <tr>
+                            <td>Aadhar No</td>
+                            <td>:</td>
+                            <td>{{Info.aadharNo}}</td>
+                        </tr>
+                        <tr>
+                            <td>Address</td>
+                            <td>:</td>
+                            <td>{{Info.address}}</td>
+                        </tr>
+                        <tr>
+                            <td>State</td>
+                            <td>:</td>
+                            <td>{{Info.state}}</td>
+                        </tr>
+                        <tr>
+                            <td>City</td>
+                            <td>:</td>
+                            <td>{{Info.city}}</td>
+                        </tr>
+                        <tr>
+                            <td>Pin</td>
+                            <td>:</td>
+                            <td>{{Info.pinCode}}</td>
+                        </tr>
+                        <tr>
+                            <td>Nominee</td>
+                            <td>:</td>
+                            <td>{{Info.nominee}}</td>
+                        </tr>
+                        <tr>
+                            <td>Nominee Relation</td>
+                            <td>:</td>
+                            <td>{{Info.relationWithNominee}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-xl-7">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Member Self Team
+                    <p id="loadingContent" *ngIf="IsLoading">data is loading...
+                    <img  class="loading" src="/loading.gif"/>
+                </p>
+                </h6>
+                <div class="table-responsive" style="max-height: 340px;">
+                    <table class="table text-start align-middle table-bordered table-hover mb-0">
+                        <thead>
+                            <tr class="text-white">
+                                <th scope="col">#</th>
+                                <th scope="col">MemberId</th>
+                                <th scope="col">Member Name</th>                                                                                                 
+                                <th scope="col">City</th>                                                                                                 
+                                <th scope="col">Total</th>                                                                                                 
+                                                                                                                            
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor="let val of selfMember;let i=index">
+                                <tr>
+                                    <td>{{i+1}}</td>
+                                    <td>{{val.memberId}}</td>                                    
+                                    <td>{{val.memberName}}</td>                                    
+                                     <td>{{val.city}}</td>   
+                                     <td>{{val.total}}</td>                                                                                                 
+                                </tr>
+                            </ng-container>                                                                   
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>       
+    </div>

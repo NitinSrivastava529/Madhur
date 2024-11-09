@@ -1,0 +1,38 @@
+.section_team .row.row-title {
+    background: #f9f8f6;
+    margin-bottom: 20px;
+    border-radius: 7px;
+    padding: 20px;
+    line-height: 2;
+}
+.input-field label{
+    padding:5px 15px;
+}
+.input-field input {
+    border: 1px solid #ddd !important;   
+    border-radius:5px !important;       
+    height: 3.5rem !important;  
+}
+.text-danger{
+    color: red;
+}
+.pull-left{
+    float: left;
+}
+.pull-right{
+    float: right;
+}
+.text-center{
+    text-align: center;
+}
+.flex{
+    display: flex;
+}
+.button-loading {
+    border-width: 2px !important;
+    border-image: url(/images/loading.gif) 60 !important;
+    pointer-events: none;
+}
+.text-right{
+  text-align: right;
+}

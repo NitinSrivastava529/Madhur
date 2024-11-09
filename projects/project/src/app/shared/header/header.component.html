@@ -1,0 +1,77 @@
+<!-- <ul style="display: inline-block;">
+    <li><a routerLink="dashboard" routerLinkActive="active">Dashboard</a></li>
+    <li><a routerLink="login" routerLinkActive="active">Login</a></li>
+    <li><a routerLink="members" routerLinkActive="active">Member</a></li>
+    <li><a routerLink="wallet" routerLinkActive="active">Wallet</a></li>
+    <li><a routerLink="change-password" routerLinkActive="active">Change Password</a></li>
+    <li><a routerLink="contact-us" routerLinkActive="active">Contact Us</a></li>
+</ul>
+ -->
+
+<!-- <div class="preloading">
+  <div class="wrap-preload">
+    <div class="cssload-loader"></div>
+  </div>
+</div> -->
+<header id="header">
+  <div class="nav-wrapper container">
+
+
+    <div class="header-menu-button">
+      <a href="#" data-activates="nav-mobile-category" class="button-collapse" id="button-collapse-category">
+        <div class="cst-btn-menu">
+          <i class="fas fa-align-left"></i>
+        </div>
+      </a>
+    </div>
+    <div class="header-logo">
+      <a routerLink="dashboard" class="nav-logo">Madhur Aastha Company</a>
+    </div>
+
+    <!-- <div class="header-icon-menu">
+      <a href="#" data-activates="nav-mobile-account" class="button-collapse" id="button-collapse-account">
+        <img src="/icons/logout.png"/>
+      </a>
+    </div> -->
+
+  </div>
+</header>
+<!-- END HEADER -->
+<!-- SIDE NAV-->
+<nav>
+
+  <!-- LEFT SIDENAV-->
+  <ul id="nav-mobile-category" class="side-nav">
+    <li class="profile">
+      <div class="li-profile-info">
+        <img src="images/profile.png" alt="profile">
+        <h2>{{memberInfo.memberName}}</h2>
+        <div class="emailprofile"></div>
+        <div class="balance">
+          Level : <span>{{LevelCount[0].level}}</span>
+        </div>
+      </div>
+      <div class="bg-profile-li">
+        <img alt="photo" src="img/bg-profile.jpg">
+      </div>
+    </li>
+    <li>
+      <a href="#" class="waves-effect waves-blue" routerLink="/dashboard"><i class="fas fa-home"></i>Dashboard</a>
+    </li>
+    <li>
+      <a href="#" routerLink="/account"><i class="fas fa-user"></i>My Account</a>
+    </li>
+    <li>
+      <a href="#" routerLink="/change-password"><i class="fas fa-lock"></i>Change Password</a>
+    </li>
+    <li>
+      <a href="#" routerLink="/team"><i class="fas fa-users"></i>My Team</a>
+    </li>    
+    <li>
+      <a href="#" routerLink="/support"><i class="fas fa-phone-square"></i>Support</a>
+    </li>
+    <li>
+      <a (click)="logout()"><i class="fas fa-sign-out-alt"></i>Sign Out</a>
+    </li>
+  </ul>
+</nav>

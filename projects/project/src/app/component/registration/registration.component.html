@@ -1,0 +1,101 @@
+<div id="page-content">
+    <div class="register-form">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 text-center">
+                    <img src="/images/register.png" class="register" />
+                    <!-- <img src="https://static.vecteezy.com/system/resources/thumbnails/024/568/140/small_2x/register-now-with-speech-bubble-and-ribbon-modern-design-template-for-icon-sign-logo-web-label-button-banner-registration-join-illustration-free-vector.jpg"/> -->
+                    <div class="section-title">
+                        Madhur Aastha Company
+                    </div>
+                    <p class="text-center">Referral Id : {{obj.refId}}</p>
+                    <p class="text-center">{{referralName}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="row">
+                    <div class="input-field col s12 m6 l4 offset-m3 offset-l4">
+                        <input name="pin" [(ngModel)]="obj.regPin" type="text" class="validate"
+                            placeholder="E Pin">
+                        <input name="referralId" [(ngModel)]="obj.refId" type="hidden" disabled="" class="validate"
+                            placeholder="Referral Id">
+                        <input name="referralName" [(ngModel)]="referralName" type="hidden" disabled="" class="validate"
+                            placeholder="Referral Name">
+                        <input name="fullName" [(ngModel)]="obj.memberName" type="text" class="validate"
+                            placeholder="Full Name">
+                        <input name="mobile" [(ngModel)]="obj.mobileNo" type="text" class="validate"
+                            placeholder="Mobile No">
+                        <div style="display: flex;width: 103%;align-items: baseline;">
+                            <span style="white-space: pre;margin-right: 20px;font-weight: bold;">DOB :</span>
+                            <!-- <input name="dob" [(ngModel)]="obj.dob" type="date" class="validate"> -->
+                             <select class="dob" (change)="createDOB()" [(ngModel)]="dob_day">
+                                <option *ngFor="let day of dayList">
+                                    {{day}}
+                                </option>
+                             </select>
+                             <select class="dob" (change)="createDOB()" [(ngModel)]="dob_month">
+                                <option *ngFor="let month of monthList">
+                                    {{month}}
+                                </option>
+                             </select>
+                             <select class="dob" (change)="createDOB()" [(ngModel)]="dob_year">
+                                <option *ngFor="let year of yearList">
+                                    {{year}}
+                                </option>
+                             </select>
+                        </div>
+                        <input name="aadharNo" [(ngModel)]="obj.aadharNo" type="text" class="validate"
+                            placeholder="Aadhar No">
+                        <input name="address" [(ngModel)]="obj.address" type="text" class="validate"
+                            placeholder="Enter Address">
+                        <select name="state" [(ngModel)]="selectedState" #state (change)="GetCity(state.value)">
+                            <option value="Select" selected>Select State</option>
+                            <ng-container *ngFor="let item of stateList">
+                                <option [value]="item.state_code+'|'+item.state_name">{{item.state_name}}</option>
+                            </ng-container>
+                        </select>
+                        <select name="city" [(ngModel)]="obj.city">
+                            <option value="Select" selected>Select City</option>
+                            <ng-container *ngFor="let item of cityList">
+                                <option [value]="item.distt_name">{{item.distt_name}}</option>
+                            </ng-container>
+                        </select>
+                        <input name="PinCode" [(ngModel)]="obj.pinCode" type="text" class="validate"
+                            placeholder="Pin Code">
+                        <input name="nominee" [(ngModel)]="obj.nominee" type="text" class="validate"
+                            placeholder="Nominee Name">
+                        <select name="relationWithNominee" [(ngModel)]="obj.relationWithNominee">
+                            <option selected="" value="Select">Select Relation With Nominee</option>
+                            <option value="son">Son</option>
+                            <option value="brother">Brother</option>
+                            <option value="sister">Sister</option>
+                            <option value="father">Father</option>
+                            <option value="wife">Wife</option>
+                            <option value="mother">Mother</option>
+                            <option value="daughter">Daughter</option>
+                            <option value="brother in law">Brother In Law</option>
+                            <option value="brother in law">Father In Law</option>
+                            <option value="husband">Husband</option>
+                        </select>
+                        <input name="password" [(ngModel)]="obj.password" type="text" class="validate"
+                            placeholder="Password">
+                        <input name="confirmPassword" [(ngModel)]="ConfirmPassword" type="text" class="validate"
+                            placeholder="Confirm Password">
+                        <label class="checkbox">
+                            <input type="checkbox" name="tc" [(ngModel)]="IsReceived" class="validate" />&nbsp;Agarbatti Packet
+                            Received?
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" name="tc" [(ngModel)]="IsAccepted" class="validate" />&nbsp;I Accept
+                            Terms & Conditions.
+                        </label>
+                        <p class="text-center">
+                            <button class="btn" (click)="Register()">SIGN UP NOW</button>
+                        </p>
+                        <img *ngIf="IsLoading" src="/images/loading.gif" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

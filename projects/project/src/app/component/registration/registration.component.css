@@ -1,0 +1,52 @@
+input{
+    padding-left:12px !important;
+}
+.input-field input {
+    background: #fff;
+    border: 1px solid #ffbf00 !important;
+    border-radius: 5px !important;
+    height: 40px !important;
+    margin-top: -7px !important;
+}
+input[type=date]{
+    padding:0 10px;
+}
+label.checkbox {
+    display: flex;
+    align-items: center;
+    font-size: 17px;
+}
+label.checkbox input{
+    width: 20px;
+    margin-right: 3px;
+}
+select {
+    width: 104%;
+    padding: 5px;
+    border: 1px solid #ffbf00;
+    height: 42px;
+    font-size: 15px;
+    color: #5b5b5b;
+    margin-bottom: 21px !important;
+    border-radius: 6px;
+}
+select option{
+    font-size: 12px;
+    padding: 0;
+}
+img.register{
+    width: 90%;
+    margin: auto;
+}
+button.btn{
+    background: red;
+}
+.register-form{
+ background: url(/images/bg.png) center center;
+}
+.section-title{
+    padding-top: 0;
+}
+.dob{
+    margin-right:5px;
+}

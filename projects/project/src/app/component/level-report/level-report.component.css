@@ -1,0 +1,7 @@
+table thead th,table tbody td{
+    white-space: pre;
+}
+.info{
+    overflow: auto;
+    width: 100%;
+}
