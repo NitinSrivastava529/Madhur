@@ -191,6 +191,7 @@ export class RegistrationComponent implements OnInit {
     }
     return true;
   }
+  //Login Call
   login(memberId:string,password:string) {   
    const objLogin = {
       url: 'api/Auth/Login',

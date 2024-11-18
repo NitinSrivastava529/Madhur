@@ -26,8 +26,7 @@
                         <input name="mobile" [(ngModel)]="obj.mobileNo" type="text" class="validate"
                             placeholder="Mobile No">
                         <div style="display: flex;width: 103%;align-items: baseline;">
-                            <span style="white-space: pre;margin-right: 20px;font-weight: bold;">DOB :</span>
-                            <!-- <input name="dob" [(ngModel)]="obj.dob" type="date" class="validate"> -->
+                            <span style="white-space: pre;margin-right: 20px;font-weight: bold;">DOB :</span>                          
                              <select class="dob" (change)="createDOB()" [(ngModel)]="dob_day">
                                 <option *ngFor="let day of dayList">
                                     {{day}}
