@@ -43,6 +43,10 @@
     <div class="bg-secondary text-center rounded p-4">
         <div class="d-flex align-items-center justify-content-between mb-4">
             <h6 class="mb-0">Today Members</h6>
+            <div class="col-sm-12 col-xl-3">
+                <input type="text" (keyup)="filterData($event)" class="form-control"
+                    placeholder="Search.." />
+            </div>
             <a routerLink="/member-list">Show All</a>
         </div>
         <div class="table-responsive" style="max-height: 420px;">
@@ -54,7 +58,7 @@
                         <th scope="col">MemberId</th>
                         <th scope="col">Member Name</th>
                         <th scope="col">Mobile No</th>                                
-                        <th scope="col">Referral Name</th>
+                        <th scope="col">Referral Id</th>
                         <th scope="col">Reg. Date</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -67,8 +71,8 @@
                             <td>{{val.memberId}}</td>
                             <td>{{val.memberName}}</td>
                             <td>{{val.mobileNo}}</td>
-                            <td>{{val.refName}}</td>
-                            <td>{{val.creationDate|date:'dd-mm-yyyy'}}</td>                                      
+                            <td>{{val.refId}}</td>
+                            <td>{{val.creationDate|date:'dd-MM-yyyy'}}</td>                                      
                             <td><a routerLink="/member-details/{{val.memberId}}" class="btn btn-sm btn-primary">Detail</a></td>
                         </tr>
                     </ng-container>                            

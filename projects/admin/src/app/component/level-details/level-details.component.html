@@ -1,37 +1,118 @@
 <div class="container-fluid pt-4 px-4">
     <div class="row g-4">
-        <div class="col-sm-12 col-xl-6">
+        <div class="col-sm-12 col-xl-10">
             <div class="bg-secondary rounded h-100 p-4">
-                <div class="divLevel">
-                    @for (index of [1,2,3,4,5,6,7,8,9,10]; track $index) {
-                    <span class="levelShow" *ngIf="level[index]!=0">Level-{{index}} : <b>{{level[index]}}</b></span>
+                <h6 class="mb-4">Level Details</h6>
+                <ul style="padding: 0;">
+                    @for (level of level; track $index) {
+                    <li class="levelShow" *ngIf="level!=0">Level-{{level.level}} <span
+                            (click)="LevelWiseMember(level.level)">{{(level.totalCount
+                            <10)?'0'+level.totalCount:level.totalCount }}</span>
+                    </li>
                     }
-                </div>
-                <div class="mb-3">
+                </ul>
+                <div class="mb-3" *ngIf="levelInfo">
+                    <p id="loadingContent" *ngIf="IsLoading">data is loading...
+                        <img class="loading" src="/loading.gif" />
+                    </p>
                     <div class="table-responsive" style="max-height: 440px;">
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
                             <thead>
                                 <tr class="text-white">
                                     <th scope="col">Member Id</th>
                                     <th scope="col">Member Name</th>
-                                    <th scope="col">Level</th>
+                                    <th scope="col">Mobile No</th>
+                                    <th scope="col">City</th>
+                                    <th scope="col" style="width: 16%;">CMD</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <ng-container *ngFor="let val of levelInfo;let i=index">
-                                    @if (groupBy(val.levelCount)) {
-                                    <tr style="background: #151414;">
-                                        <td colspan="3">{{'Level - '+val.levelCount}}</td>
-                                    </tr>
-                                    }
-                                    <tr [ngClass]="(val.status=='Achieved')?'text-success':'-'">
+                                    <tr>
                                         <td>{{val.memberId}}</td>
                                         <td>{{val.memberName}}</td>
-                                        <td>{{val.levelCount}}</td>
+                                        <td>{{val.mobileNo}}</td>
+                                        <td>{{val.city}}</td>
+                                        <td>
+                                            <button type="button"
+                                                onclick="$('#modalReward').modal('show')"
+                                                (click)="reward.MemberId=val.memberId;reward.level=_level;"
+                                                class="btn btn-warning btn-sm m-2">Reward</button>
+
+                                            <button type="button"
+                                                onclick="$('#modalViewReward').modal('show')" (click)="GetReward(val.memberId)"
+                                                 class="btn btn-warning btn-sm m-2">View</button>
+                                        </td>
                                     </tr>
                                 </ng-container>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalReward" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="col-sm-12 col-xl-12">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Manage Reward</h6>
+                            <div class="form-floating mb-3">
+                                <input type="email" [(ngModel)]="reward.MemberId" class="form-control"
+                                    id="floatingInput" placeholder="name@example.com">
+                                <label for="floatingInput">MemberId</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <select class="form-select" id="floatingSelect" [(ngModel)]="reward.level"
+                                    aria-label="Floating label select example">
+                                    <option value="0" selected="">Select Level</option>
+                                    <option value="1">01</option>
+                                    <option value="2">02</option>
+                                    <option value="3">03</option>
+                                    <option value="4">04</option>
+                                    <option value="5">05</option>
+                                    <option value="6">06</option>
+                                    <option value="7">07</option>
+                                </select>
+                                <label for="floatingSelect">Works with level</label>
+                            </div>
+                            <div class="mb-3">
+                                <input name="fileUpload" (change)="changeFile($event)" class="form-control bg-dark"
+                                    type="file" id="category_banner" accept=".jpeg,.png,.jpg" />
+                            </div>
+                            <div class="form-floating">
+                                <textarea class="form-control" [(ngModel)]="reward.Remark"
+                                    placeholder="Leave a comment here" id="floatingTextarea"
+                                    style="height: 150px;"></textarea>
+                                <label for="floatingTextarea">Comments</label>
+                            </div>
+                            <div class="mt-3">
+                                <button type="button" (click)="SaveReward()" class="btn btn-primary m-2"><i
+                                        class="fa fa-upload me-2"></i>Submit <img class="RewardLoading"
+                                        *ngIf="IsLoadingRewad" src="/loading.gif" /></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalViewReward" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="col-sm-12 col-xl-12" *ngFor="let levelIncome of levelIncome">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4"> Reward Date :  {{levelIncome.creationDate|date:'dd-MM-YYYY'}}
+                                <label style="float: right;">Level : {{levelIncome.level}}</label>
+                            </h6>                             
+                            <img [src]="[global.baseUrl+'Resource/Reward/'+levelIncome.file_path]" style="width: 100%;border-radius:5px;"/> 
+                            <p style="margin-top: 10px;"><b class="text-white">Remark : </b>{{levelIncome.remark}}</p><hr style="margin: 0;">
+                        </div>
                     </div>
                 </div>
             </div>

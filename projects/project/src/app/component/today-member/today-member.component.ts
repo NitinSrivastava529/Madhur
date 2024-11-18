@@ -19,6 +19,10 @@ export class TodayMemberComponent {
   ngOnInit(): void {
     this.GetMember()
   }
+  filterData(value:string) {          
+    this.levelInfo = this.allLevelInfo.filter((res: any) =>
+      res.memberName.toLowerCase().includes(value.toLowerCase())
+  )}
   GetMember() {
     this.http.get(this.global.baseUrl + 'api/Member/TodayMember?MemberId=' + localStorage.getItem('MemberId') + '&Logic=AllMember').subscribe(res => {
       this.allLevelInfo = res;

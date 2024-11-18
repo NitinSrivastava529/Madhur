@@ -34,13 +34,14 @@ export class LoginComponent {
     }
     this.IsLoading=true;
     this.global.post(this.obj).subscribe((res => {
-      if (res.result) {
+      if (res.response.result) {
+        localStorage.setItem('UserToken',res.token);
         localStorage.setItem('IsLoggedIn', 'true');
         localStorage.setItem('MemberId', this.obj.MemberId);
         this.IsLoading=false;
         this.router.navigateByUrl('dashboard');
       } else {
-        alert(res.message)
+        alert(res.response.message)
         this.IsLoading=false;
       }
     }))

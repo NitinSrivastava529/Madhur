@@ -23,13 +23,15 @@ export class LoginComponent {
   login() {
     this.IsLoading = true;
     this._config.post(this.obj).subscribe((res => {
-      if (res.result) {
+      console.log(res)
+      if (res.response.result) {
+        localStorage.setItem('AdminToken',res.token);
         localStorage.setItem('IsAdminLoggedIn', 'true');
         localStorage.setItem('MemberId', this.obj.MemberId);
         this.IsLoading = false;
         this.router.navigateByUrl('dashboard');
       } else {
-        alert(res.message)
+        alert(res.response.message)
         this.IsLoading = false;
       }
     }))

@@ -9,6 +9,13 @@
                 </div>
             </div>
             <div class="row">
+                <div style="display: flex;align-items:baseline;">
+                    <select #type>
+                        <option value="Member">Member</option>
+                        <option value="Repurchase">Repurchase</option>
+                    </select>&nbsp;
+                    <button class="btn" (click)="filterData(type.value)">Get</button>
+                </div>
                 <div class="col s12">
                     <div class="info text-center">                       
                         <table class="table">

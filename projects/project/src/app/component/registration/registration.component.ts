@@ -198,7 +198,8 @@ export class RegistrationComponent implements OnInit {
       Password: password
     } 
     this.global.post(objLogin).subscribe((res => {
-      if (res.result) {
+      if (res.response.result) {
+        localStorage.setItem('UserToken', res.token);
         localStorage.setItem('IsLoggedIn', 'true');
         localStorage.setItem('MemberId', objLogin.MemberId);       
         this.route.navigateByUrl('dashboard');

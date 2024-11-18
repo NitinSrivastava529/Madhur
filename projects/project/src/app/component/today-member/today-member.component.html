@@ -9,25 +9,32 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col s12">                        
-                    <div class="info text-center">                       
+                <div class="col s12">
+                    <div style="display: flex;align-items:baseline;">
+                        <select #type>
+                            <option value="Member">Member</option>
+                            <option value="Repurchase">Repurchase</option>
+                        </select>&nbsp;
+                        <button class="btn" (click)="filterData(type.value)">Get</button>
+                    </div>
+                    <div class="info text-center">
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>MemberId</th>
-                                    <th>Member Name</th> 
-                                    <th>Mobile No</th>                                   
-                                    <th>Ref Id</th>                                                                                               
+                                    <th>Member Name</th>
+                                    <th>Mobile No</th>
+                                    <th>Ref Id</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let key of levelInfo;let i=index">
                                     <td>{{i+1}}</td>
                                     <td>{{key.memberId}}</td>
-                                    <td>{{key.memberName}}</td>     
-                                    <td>{{key.mobileNo}}</td>                                                                                                     
-                                    <td class="text-danger">{{key.refId}}</td>                                                                                                                                                                                                                                     
+                                    <td>{{key.memberName}}</td>
+                                    <td>{{key.mobileNo}}</td>
+                                    <td class="text-danger">{{key.refId}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -36,5 +43,4 @@
             </div>
         </div>
     </div>
-  </div>
-  
+</div>

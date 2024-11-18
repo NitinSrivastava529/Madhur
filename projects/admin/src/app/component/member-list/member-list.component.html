@@ -7,7 +7,7 @@
                     <div class="row g-4">
                         <div class="col-sm-12 col-xl-4">
                             <div class="input-group mb-3">
-                                <input type="text"  [(ngModel)]="filterObj.mobile" class="form-control" placeholder="Mobile Number"
+                                <input type="text"  [(ngModel)]="filterObj.mobile" class="form-control" placeholder="Search By Mobile,MemberId"
                                     aria-label="Mobile Number" aria-describedby="basic-addon2">
                                 <button type="submit" (click)="getByMobileNo()" class="btn btn-primary">Get Member</button>
                             </div>
@@ -47,7 +47,7 @@
                                         <td>{{val.memberName}}</td>
                                         <td>{{val.mobileNo}}</td>
                                         <td>{{val.refId}}</td>
-                                        <td>{{val.creationDate|date:'dd-mm-yyyy'}}</td>
+                                        <td>{{val.creationDate|date:'dd-MM-yyyy'}}</td>
                                         <td>
                                             <div style="display: flex;align-items:center;">
                                                 <a routerLink="/member-details/{{val.memberId}}"

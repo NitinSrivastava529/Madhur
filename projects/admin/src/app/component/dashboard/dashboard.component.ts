@@ -12,6 +12,7 @@ import { RouterLink } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
   TotalInfo: any = {};
+  AllTodayMembers: any = {};
   TodayMembers: any = {};
   global = inject(GlobalService);
   ngOnInit(): void {
@@ -26,11 +27,20 @@ export class DashboardComponent implements OnInit {
       this.TotalInfo = res;
     })
   }
+  filterData(event: Event) {    
+    const value = (event.target as HTMLInputElement).value.toLowerCase();
+    this.TodayMembers = this.AllTodayMembers.filter((res: any) =>
+      res.memberName.toLowerCase().includes(value) |
+      res.memberId.toLowerCase().includes(value) |
+      res.mobileNo.toLowerCase().includes(value) |
+      res.regPin.toLowerCase().includes(value));
+  }
   GetTodayMembers() {
     var obj = {
       url: 'api/Member/GetTodayMembers'
     }
     this.global.get(obj).subscribe(res => {
+      this.AllTodayMembers = res;
       this.TodayMembers = res;
     })
   }

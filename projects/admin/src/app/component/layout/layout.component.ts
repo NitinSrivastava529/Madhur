@@ -22,6 +22,7 @@ export class LayoutComponent {
   }
   logout() {
     if (confirm('are you sure?')) {
+      localStorage.removeItem('AdminToken');
       localStorage.removeItem('IsAdminLoggedIn');
       this.route.navigateByUrl('login');
     }

@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { GlobalService } from '../../services/global.service';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-team',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './team.component.html',
   styleUrl: './team.component.css'
 })
@@ -28,6 +29,10 @@ export class TeamComponent {
       res.mobileNo.toLowerCase().includes(val) |
       res.refId.toLowerCase().includes(val))
   }
+  filterType(value:string) {          
+    this.levelInfo = this.allLevelInfo.filter((res: any) =>
+      res.memberName.toLowerCase().includes(value.toLowerCase())
+  )}
   GetLevelCount() {
     this.http.get(this.global.baseUrl + 'api/Member/LevelCount/' + localStorage.getItem('MemberId')).subscribe((res => {
       this.LevelCount = res;

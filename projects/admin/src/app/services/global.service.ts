@@ -14,10 +14,17 @@ export class GlobalService {
     .set('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
     .set('Access-Control-Allow-Headers', 'Content-Type')
     .set('Content-Type', 'application/json')
-    .set('Accept', 'application/json')
+    .set('Accept', 'application/json');
+     header = new HttpHeaders({
+      'Content-Type': 'multipart/form-data',
+      'Accept': 'application/json'
+    });
   constructor(private http: HttpClient) { }
   post(data: any): Observable<any> {
     return this.http.post(this.baseUrl + data.url, data, { headers: this.headers });
+  }
+  UploadFile(url:string,data: any): Observable<any> {             
+    return this.http.post(this.baseUrl + url, data);
   }
   put(url: string, data: any): Observable<any> {
     return this.http.put(this.baseUrl + url, data, { headers: this.headers });

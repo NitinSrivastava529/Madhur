@@ -9,8 +9,15 @@
               </div>
           </div>
           <div class="row">
-              <div class="col s12">
-                <input type="text" name="search" (keyup)="filterData($event)" placeholder="Seach.." />
+              <div class="col s12">               
+                <div style="display: flex;align-items:baseline;">
+                    <select #type (change)="filterType(type.value)">
+                        <option value="Member">Member</option>
+                        <option value="Repurchase">Repurchase</option>
+                    </select>&nbsp;&nbsp;&nbsp;                
+
+                    <input type="text" name="search" style="float: right;" (keyup)="filterData($event)" placeholder="Seach.." />
+                </div>
                 <label class="level">Level : {{LevelCount[0].level}}</label>
                 <label class="level">Total : {{LevelCount[0].total}}</label>             
                   <div class="info text-center">                       

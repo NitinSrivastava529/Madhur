@@ -34,6 +34,7 @@ export class HeaderComponent {
   }
   logout() {
     if (confirm('are you sure?')) {
+      localStorage.removeItem('UserToken');
       localStorage.removeItem('IsLoggedIn');
       localStorage.removeItem('MemberId');
       localStorage.removeItem('MemberInfo');
