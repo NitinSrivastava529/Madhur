@@ -108,7 +108,8 @@
                     <div class="col-sm-12 col-xl-12" *ngFor="let levelIncome of levelIncome">
                         <div class="bg-secondary rounded h-100 p-4">
                             <h6 class="mb-4"> Reward Date :  {{levelIncome.creationDate|date:'dd-MM-YYYY'}}
-                                <label style="float: right;">Level : {{levelIncome.level}}</label>
+                                <label style="float: right" [ngStyle]="{'color':levelIncome.isApproved=='N'?'#ffaf5c':'#1ac61a'}"> {{levelIncome.isApproved=='N'?'Pending':'Approved'}}</label>
+                                <label style="float: right;">Level : {{levelIncome.level}}&nbsp;| &nbsp;</label>
                             </h6>                             
                             <img [src]="[global.baseUrl+'Resource/Reward/'+levelIncome.file_path]" style="width: 100%;border-radius:5px;"/> 
                             <p style="margin-top: 10px;"><b class="text-white">Remark : </b>{{levelIncome.remark}}</p><hr style="margin: 0;">

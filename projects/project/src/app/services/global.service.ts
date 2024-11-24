@@ -35,8 +35,7 @@ export class GlobalService {
       '/lib/owlcarousel/owl.carousel.min.js',
       '/lib/Magnific-Popup-master/dist/jquery.magnific-popup.js',
       '/lib/slick/slick/slick.min.js',
-      '/js/custom.js',
-      '/js/swDev.js'
+      '/js/custom.js'
     ];
     for (let i = 0; i < jsArray.length; i++) {
       let node = document.createElement('script');

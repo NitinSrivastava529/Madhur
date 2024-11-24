@@ -1,0 +1,39 @@
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-4">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Reward Distributor Info</h6>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Enter Distributor Id</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" #id placeholder="Distributor Id"
+                            aria-label="Distributor Id" aria-describedby="basic-addon2">
+                        <button *ngIf="!IsLoading" (click)="GetTotal(id.value)" class="btn btn-primary">Get</button>
+                        <img *ngIf="IsLoading" class="loading" src="/loading.gif" />
+                        &nbsp;<label class="total">Total : {{total}}</label><button class="btn btn-primary btn-sm" style="margin-left: 10px;" (click)="ResetDistributorReward(id.value)">Reset</button>
+                    </div>
+                    <div class="table-responsive" style="max-height: 440px;">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-white">
+                                    <th scope="col">#</th>
+                                    <th scope="col">Member Id</th>
+                                    <th scope="col">Reward Level</th>                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let value of rewardInfo;track $index">
+                                <tr>
+                                    <td>#</td>
+                                    <td>{{value.memberId}}</td>
+                                    <td>{{value.level}}</td>                                   
+                                </tr>
+                            </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,11 +2,12 @@ import { Component, Inject, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { GlobalService } from '../../services/global.service';
 import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive,CommonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
