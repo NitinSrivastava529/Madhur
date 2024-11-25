@@ -17,6 +17,11 @@
                         </select>&nbsp;
                         <button class="btn" (click)="filterData(type.value)">Get</button>
                     </div>
+                    <div *ngIf="levelInfo.length>0">
+                        <label class="total">Mem. : {{totalMem}}</label>
+                        <label class="total">Pur. : {{totalPurch}}</label>
+                        <label class="total">Total :{{levelInfo.length}}</label>
+                    </div>
                     <div class="info text-center">
                         <table class="table">
                             <thead>

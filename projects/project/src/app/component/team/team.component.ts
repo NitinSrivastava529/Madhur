@@ -15,11 +15,21 @@ export class TeamComponent {
   levelInfo: any
   allLevelInfo: any
   LevelCount: any
+  totalMem:number=0;
+  totalPur:number=0;
   global = inject(GlobalService);
   http = inject(HttpClient);
   ngOnInit(): void {
     this.GetMember()
     this.GetLevelCount()
+  }
+  totalCal(){
+    this.levelInfo.forEach((item:any)=>{
+      if(item.memberName.includes('Repurchase'))
+        this.totalPur++;
+      else
+      this.totalMem++;
+    })
   }
   filterData(event: Event) {
     const val = (event.target as HTMLInputElement).value.toLowerCase();
@@ -42,6 +52,7 @@ export class TeamComponent {
     this.http.get(this.global.baseUrl + 'api/Member/AllMember?MemberId=' + localStorage.getItem('MemberId') + '&Logic=AllMember').subscribe(res => {
       this.allLevelInfo = res;
       this.levelInfo = res;
+      this.totalCal()
     })
   }
 }

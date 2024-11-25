@@ -16,6 +16,8 @@ export class MemberDetailsComponent implements OnInit {
   LevelCount: any = {};
   selfMember: any = {};
   Info: any = {};
+  totalMem:number=0;
+  totalPur:number=0;
   IsLoading: boolean = false;
   memberId: any = "";
   global = inject(GlobalService);
@@ -25,6 +27,14 @@ export class MemberDetailsComponent implements OnInit {
     this.GetMember();
     this.selfMemberInfo();
     this.GetLevelCount();
+  }
+  totalInfo(){
+    this.selfMember.forEach((item:any)=>{
+       if(item.memberName.includes('Repurchase'))
+        this.totalPur++;
+      else
+      this.totalMem++;
+    })
   }
   GetMember() {
     this.http.get(this.global.baseUrl + 'api/Member/GetMember/' + this.memberId).subscribe((res => {
@@ -38,9 +48,10 @@ export class MemberDetailsComponent implements OnInit {
  }
   selfMemberInfo() {
     this.IsLoading=true;
-    this.http.get(this.global.baseUrl+'api/Member/AllSelfMember?MemberId='+this.memberId +'&Logic=AllSelfMember').subscribe(res => {
+    this.http.get(this.global.baseUrl+'api/Member/AllSelfMemberAdmin?MemberId='+this.memberId +'&Logic=AllSelfMember').subscribe(res => {
       this.selfMember = res;      
       this.IsLoading=false;
+      this.totalInfo();
     })
   }
 }

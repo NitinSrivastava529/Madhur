@@ -41,12 +41,7 @@ export class MemberListComponent {
     this.filterObj.pageNo++
     this.GetMembers();
   }
-  getByMobileNo(){  
-    if(this.filterObj.mobile.length<10)
-      {
-        alert('Please Enter 10 digit Mobile No')
-        return
-      }   
+  getByMobileNo(){   
       this.filterObj.pageNo=1;
     this.GetMembers();
   }

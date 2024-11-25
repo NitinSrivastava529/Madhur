@@ -2,42 +2,52 @@
     <div class="row g-4">
         <div class="col-sm-12 col-xl-6">
             <div class="bg-secondary rounded h-100 p-4">
-                <h6 class="mb-4">Manage E-Pin</h6>              
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Enter E-Pin Number</label>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" [(ngModel)]="count" placeholder="E-Pin Number"
-                                aria-label="E-Pin Number" aria-describedby="basic-addon2">
-                                <button *ngIf="!IsLoading" (click)="GenerateKey()" class="btn btn-primary">Generate</button>
-                                <img *ngIf="IsLoading" class="loading" src="/loading.gif"/>     
-                                
-                                <button *ngIf="!IsLoading2" style="margin-left: 10px;" (click)="copyKey()" class="btn btn-primary">Copy</button>
-                                <img *ngIf="IsLoading2" class="loading" src="/loading.gif"/> 
-                        </div>
-                        <div class="table-responsive" style="max-height: 440px;">
-                            <table class="table text-start align-middle table-bordered table-hover mb-0">
-                                <thead>
-                                    <tr class="text-white">
-                                        <th scope="col">#</th>
-                                        <th scope="col">E-Pin</th>
-                                        <th scope="col">Creation Date</th>                                                                           
-                                        <th style="width: 1%;" scope="col">CMD</th>                                                                           
+                <h6 class="mb-4">Manage E-Pin    
+                    <ul style="padding: 0;">                    
+                        <li class="levelShow">Member<span> {{totalKey.member}}</span></li>
+                        <li class="levelShow">Purchase<span> {{totalKey.purchase}}</span></li>
+                        <li class="levelShow">Reward<span> {{totalKey.reward}}</span></li>
+                        <li class="levelShow">Total<span> {{totalKey.member+totalKey.purchase+totalKey.reward}}</span></li>
+                    </ul>
+                </h6>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Enter E-Pin Number</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" [(ngModel)]="count" placeholder="E-Pin Number"
+                            aria-label="E-Pin Number" aria-describedby="basic-addon2">
+                        <button *ngIf="!IsLoading" (click)="GenerateKey()" class="btn btn-primary">Generate</button>
+                        <img *ngIf="IsLoading" class="loading" src="/loading.gif" />
+
+                        <button *ngIf="!IsLoading2" style="margin-left: 10px;" (click)="copyKey()"
+                            class="btn btn-primary">Copy</button>
+                        <img *ngIf="IsLoading2" class="loading" src="/loading.gif" />
+                    </div>                   
+                    <div class="table-responsive" style="max-height: 440px;">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-white">
+                                    <th scope="col">#</th>
+                                    <th scope="col">E-Pin</th>
+                                    <th scope="col">Creation Date</th>
+                                    <th style="width: 1%;" scope="col">CMD</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let val of RegKey;let i=index">
+                                    <tr [class]="val.isCopy=='Y'?'text-success':'-'">
+                                        <td>{{i+1}}</td>
+                                        <td>{{val.key}}</td>
+                                        <td>{{val.creationDate|date:'dd-MM-yyyy'}}</td>
+                                        <td *ngIf="val.isCopy!='Y'"><input [attr.key]="val.key"
+                                                (change)="selectKey($event)" [value]="val.auotId" type="checkbox"
+                                                class="form-check-input" /></td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    <ng-container *ngFor="let val of RegKey;let i=index">
-                                        <tr [class]="val.isCopy=='Y'?'text-success':'-'">
-                                            <td>{{i+1}}</td>
-                                            <td>{{val.key}}</td>                                    
-                                            <td>{{val.creationDate|date:'dd-MM-yyyy'}}</td>                                                                                                                                                       
-                                            <td *ngIf="val.isCopy!='Y'"><input [attr.key]="val.key" (change)="selectKey($event)" [value]="val.auotId" type="checkbox" class="form-check-input"/></td>                                                                                                                                                       
-                                        </tr>
-                                    </ng-container>                                                                   
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>                                                    
-            </div>            
-        </div>    
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

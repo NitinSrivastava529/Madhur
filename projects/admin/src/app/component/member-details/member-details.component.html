@@ -2,10 +2,13 @@
     <div class="row g-4">
         <div class="col-sm-12 col-xl-5">
             <div class="bg-secondary rounded h-100 p-4">
-                <h6 class="mb-4">Member Profile Details &nbsp;: &nbsp;
-                <label class="level">Level : {{LevelCount[0].level}}</label>
-                <label class="level">:  Total Member : {{LevelCount[0].total}}</label>
-                    
+                <h6 class="mb-4">Member Profile Details &nbsp;: &nbsp;                            
+                <ul style="padding: 0;">
+                    <li class="levelShow">Level<span> {{LevelCount[0].level}}</span></li>
+                    <li class="levelShow">Mem<span>{{totalMem}}</span></li>
+                    <li class="levelShow">Pur<span>{{totalPur}}</span></li>
+                    <li class="levelShow">Total<span>{{LevelCount[0].total}}</span></li>
+                    </ul>
                 </h6>
 
                 <div class="table-responsive">
@@ -88,7 +91,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">MemberId</th>
                                 <th scope="col">Member Name</th>                                                                                                 
-                                <th scope="col">City</th>                                                                                                 
+                                <th scope="col">Mobile No</th>                                                                                                 
                                 <th scope="col">Total</th>                                                                                                 
                                                                                                                             
                             </tr>
@@ -99,7 +102,7 @@
                                     <td>{{i+1}}</td>
                                     <td>{{val.memberId}}</td>                                    
                                     <td>{{val.memberName}}</td>                                    
-                                     <td>{{val.city}}</td>   
+                                     <td>{{val.mobileNo}}</td>   
                                      <td>{{val.total}}</td>                                                                                                 
                                 </tr>
                             </ng-container>                                                                   

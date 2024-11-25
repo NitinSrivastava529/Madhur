@@ -19,15 +19,10 @@ export class LevelReportComponent implements OnInit {
   ngOnInit(): void {
     this.GetMember()
   }
-  filterData(value:string) {          
-    this.levelInfo = this.allLevelInfo.filter((res: any) =>
-      res.memberName.toLowerCase().includes(value.toLowerCase())
-  )}
   GetMember() {
     this.http.get(this.global.baseUrl+'api/Member/AllSelfMember?MemberId='+localStorage.getItem('MemberId')+'&Logic=AllSelfMember').subscribe(res => {
       this.allLevelInfo = res;
-      this.levelInfo = res;
-      console.log(res)
+      this.levelInfo = res;      
     })
   }
 }

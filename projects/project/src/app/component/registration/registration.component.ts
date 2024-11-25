@@ -25,7 +25,7 @@ export class RegistrationComponent implements OnInit {
   dob_year: any = new Date().getFullYear() - 18;
   selectedState: string = "Select";
   obj: any = {
-    url: 'api/Member/AddMember',
+    url: 'api/Auth/AddMember',
     regPin: "",
     refId: "",
     memberName: "",
@@ -55,6 +55,8 @@ export class RegistrationComponent implements OnInit {
   dayList: any = [];
   monthList: any = [];
   yearList: any = [];
+  todayDate = new Date();
+  age:number=0;
   constructor(private activatedRoute: ActivatedRoute) {
     this.referralId = activatedRoute.snapshot.paramMap.get('memberId') || '';
     this.obj.refId = activatedRoute.snapshot.paramMap.get('memberId') || '';
@@ -74,14 +76,15 @@ export class RegistrationComponent implements OnInit {
     for (var i = 1960; i < 2007; i++) {
       this.yearList.push(i)
     }
+
   }
   GetState() {
-    this.http.get(this.global.baseUrl + 'api/Member/GetState').subscribe((res => {
+    this.http.get(this.global.baseUrl + 'api/Auth/GetState').subscribe((res => {
       this.stateList = res;
     }))
   }
   GetCity(StateCode: any) {
-    this.http.get(this.global.baseUrl + 'api/Member/GetDistrict/' + StateCode.split('|')[0]).subscribe((res => {
+    this.http.get(this.global.baseUrl + 'api/Auth/GetDistrict/' + StateCode.split('|')[0]).subscribe((res => {
       this.cityList = res;
     }))
   }
@@ -93,14 +96,12 @@ export class RegistrationComponent implements OnInit {
   }
   createDOB() {
     const dobInfo = this.dob_year + "-" + this.dob_month + "-" + this.dob_day;
-    this.obj.dob= dobInfo
+    this.obj.dob= dobInfo    
   }
   Register() {      
-    if (!this.validate()) {
-      
+    if (this.validate()) {      
       this.IsLoading = true;
-      this.global.post(this.obj).subscribe((res => {
-        console.log(res)
+      this.global.post(this.obj).subscribe((res => {        
         if (res.message.includes('Success')) {
           alert(res.message)
           this.clear();
@@ -133,22 +134,25 @@ export class RegistrationComponent implements OnInit {
       alert('Please Fill 10 digit Mobile No')
       return false
     }
+    var dob=parseInt(this.dob_year)+parseInt(this.dob_month)+parseInt(this.dob_day);
+    var today=this.todayDate.getFullYear()+this.todayDate.getMonth()+1+this.todayDate.getDate();
+
     if (this.obj.dob == '') {
       alert('Please Fill DOB')
       return false
-    } else if(this.global.calAge(this.dob_year,this.dob_month,this.dob_day)<18){
-      alert('your age is '+this.global.calAge(this.dob_year,this.dob_month,this.dob_day)+'. not allowed !')
+    } else if((today-dob)<18){
+      alert('your age is '+(today-dob)+'. not allowed !')
       return false
     }
-    if (this.obj.aadharNo == '') {
-      alert('Please Fill Aadhar No')
-      return false
-    } else if (this.obj.aadharNo.length != 12) {
-      alert('Please Fill 12 digit Aadhar No')
-      return false
-    }
+    // if (this.obj.aadharNo == '') {
+    //   alert('Please Fill Aadhar No')
+    //   return false
+    // } else if (this.obj.aadharNo.length != 12) {
+    //   alert('Please Fill 12 digit Aadhar No')
+    //   return false
+    // }
     if (this.obj.address == '') {
-      alert('Please Fill Address')
+      alert('Please Fill Full Address')
       return false
     }
     if (this.selectedState == 'Select') {

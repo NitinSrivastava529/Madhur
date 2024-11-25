@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LiteralArray } from '@angular/compiler';
 import { HttpClient } from '@angular/common/http';
+import { TotalKey } from '../../model/TotalKey';
 
 @Component({
   selector: 'app-reg-key',
@@ -16,6 +17,7 @@ export class RegKeyComponent implements OnInit {
   IsLoading: boolean = false;
   IsLoading2: boolean = false;
   count = 1;
+  totalKey:any={};
   RegKey: any = {};
   listId: any = [];
   listkey: any = [];
@@ -23,7 +25,8 @@ export class RegKeyComponent implements OnInit {
   http = inject(HttpClient);
   constructor() { }
   ngOnInit(): void {
-    this.GetRegKey();
+    this.GetRegKey();  
+    this.TotalKey()
   }
   GetRegKey() {
     const obj = {
@@ -74,6 +77,11 @@ export class RegKeyComponent implements OnInit {
         this.copyMessage()
         this.listkey=[];
       },
+    })
+  }
+  TotalKey() {    
+    this.http.get(this.global.baseUrl + 'api/Member/TotalKey').subscribe((res:any)=>{     
+      this.totalKey=res;     
     })
   }
   GenerateKey() {

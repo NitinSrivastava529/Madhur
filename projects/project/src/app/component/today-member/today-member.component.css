@@ -18,3 +18,13 @@ table thead th,table tbody td{
     overflow: auto;
     width: 100%;
 }
+label.total {
+    font-size: 15px;
+    padding:4px 10px;
+    color: #0aa43d;
+    font-weight: bold;
+    text-align: center;
+    background: #efeeee;
+    border-radius: 3px;
+    margin-left:10px    
+}

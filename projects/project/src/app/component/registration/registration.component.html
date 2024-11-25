@@ -42,11 +42,12 @@
                                     {{year}}
                                 </option>
                              </select>
+                             {{this.obj.dob|date:'yyyyMMdd'}}                             
                         </div>
                         <input name="aadharNo" [(ngModel)]="obj.aadharNo" type="text" class="validate"
                             placeholder="Aadhar No">
                         <input name="address" [(ngModel)]="obj.address" type="text" class="validate"
-                            placeholder="Enter Address">
+                            placeholder="Enter Full Address">
                         <select name="state" [(ngModel)]="selectedState" #state (change)="GetCity(state.value)">
                             <option value="Select" selected>Select State</option>
                             <ng-container *ngFor="let item of stateList">
