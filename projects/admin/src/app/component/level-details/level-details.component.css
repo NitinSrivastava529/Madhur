@@ -59,7 +59,10 @@ ul li span:hover{
 }
 #loadingContent{
     position: absolute;
-    right: 30%;
-    top: 21%;
-
+    right: 39%;
+    top: 22%;
+}
+.edit i{
+    cursor: pointer;
+    font-size: 14px;
 }

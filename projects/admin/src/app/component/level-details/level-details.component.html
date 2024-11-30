@@ -1,6 +1,6 @@
 <div class="container-fluid pt-4 px-4">
     <div class="row g-4">
-        <div class="col-sm-12 col-xl-10">
+        <div class="col-sm-12 col-xl-7">
             <div class="bg-secondary rounded h-100 p-4">
                 <h6 class="mb-4">Level Details</h6>
                 <ul style="padding: 0;">
@@ -34,19 +34,52 @@
                                         <td>{{val.mobileNo}}</td>
                                         <td>{{val.city}}</td>
                                         <td>
-                                            <button type="button"
-                                                onclick="$('#modalReward').modal('show')"
+                                            <button type="button" onclick="$('#modalReward').modal('show')"
                                                 (click)="reward.MemberId=val.memberId;reward.level=_level;"
-                                                class="btn btn-warning btn-sm m-2">Reward</button>
+                                                class="btn btn-warning btn-sm m-2"><i class="fa fa-gift"></i></button>
 
-                                            <button type="button"
-                                                onclick="$('#modalViewReward').modal('show')" (click)="GetReward(val.memberId)"
-                                                 class="btn btn-warning btn-sm m-2">View</button>
+                                            <button type="button" (click)="GetReward(val.memberId)"
+                                                class="btn btn-warning btn-sm m-2"><i class="fa fa-eye"></i></button>
                                         </td>
                                     </tr>
                                 </ng-container>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-xl-5">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Reward Details</h6>
+                <div class="mb-3" *ngIf="levelInfo" style="max-height: 520px;overflow: auto;">
+                    <div class="col-sm-12 col-xl-12" *ngFor="let levelIncome of levelIncome">
+                        <div class="bg-secondary rounded h-100" style="padding: 5px 5px;">
+                            <h6 class="mb-4"> Date : {{levelIncome.creationDate|date:'dd-MM-YYYY'}}
+                                <label style="float: right"
+                                    [ngStyle]="{'color':levelIncome.isApproved=='N'?'#ffaf5c':'#1ac61a'}">
+                                    {{levelIncome.isApproved=='N'?'Pending':'Approved'}}</label>
+                                <label style="float: right;">Level : {{levelIncome.level}}&nbsp;| &nbsp;</label>
+                                <label class="edit" *ngIf="levelIncome.isApproved=='N'" style="margin-left: 15%;">
+                                    <i class="fa fa-trash text-danger"
+                                        (click)="DeleteReward(levelIncome.autoId)"></i>&nbsp;&nbsp;|&nbsp;
+                                    <i class="fa fa-edit text-warning" (click)="setUpdate(levelIncome.autoId)"></i>{{IsUpdate()}}
+                                </label>
+                            </h6>
+                            <!-- <img [src]="[global.baseUrl+'Resource/Reward/'+levelIncome.file_path]" style="width: 100%;border-radius:5px;"/>  -->
+                            <img src="https://localhost:7284/Resource/Reward/MEM0000010_1_MEM0000010_1_slider2.jpg"
+                                style="width: 100%;border-radius:5px;" />
+                            <p  *ngIf="IsUpdate()!=levelIncome.autoId" style="margin-top: 10px;"><b class="text-white">Remark : </b>{{levelIncome.remark}}</p>
+                            <hr style="margin: 0;">
+                            <div class="EditRemark" style="display: flex;" *ngIf="IsUpdate()==levelIncome.autoId">
+                                <textarea class="form-control" 
+                                    placeholder="Leave a comment here" id="floatingTextarea"
+                                    style="height: 60px;" #reamrk [(ngModel)]="levelIncome.remark">{{levelIncome.remark}}</textarea>
+                                <button type="button" (click)="EditReward(levelIncome.autoId,reamrk.value)"
+                                    class="btn btn-primary btn-sm m-2 pull-right">Update</button>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -94,25 +127,6 @@
                                         class="fa fa-upload me-2"></i>Submit <img class="RewardLoading"
                                         *ngIf="IsLoadingRewad" src="/loading.gif" /></button>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="modalViewReward" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="col-sm-12 col-xl-12" *ngFor="let levelIncome of levelIncome">
-                        <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4"> Reward Date :  {{levelIncome.creationDate|date:'dd-MM-YYYY'}}
-                                <label style="float: right" [ngStyle]="{'color':levelIncome.isApproved=='N'?'#ffaf5c':'#1ac61a'}"> {{levelIncome.isApproved=='N'?'Pending':'Approved'}}</label>
-                                <label style="float: right;">Level : {{levelIncome.level}}&nbsp;| &nbsp;</label>
-                            </h6>                             
-                            <img [src]="[global.baseUrl+'Resource/Reward/'+levelIncome.file_path]" style="width: 100%;border-radius:5px;"/> 
-                            <p style="margin-top: 10px;"><b class="text-white">Remark : </b>{{levelIncome.remark}}</p><hr style="margin: 0;">
                         </div>
                     </div>
                 </div>
