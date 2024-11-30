@@ -20,3 +20,6 @@ ul li span{
 ul li span:hover{
     background: #06670fde;    
 }
+.hide{
+    display: none;
+}

@@ -63,12 +63,12 @@
                                 <label class="edit" *ngIf="levelIncome.isApproved=='N'" style="margin-left: 15%;">
                                     <i class="fa fa-trash text-danger"
                                         (click)="DeleteReward(levelIncome.autoId)"></i>&nbsp;&nbsp;|&nbsp;
-                                    <i class="fa fa-edit text-warning" (click)="setUpdate(levelIncome.autoId)"></i>{{IsUpdate()}}
+                                    <i class="fa fa-edit text-warning" (click)="setUpdate(levelIncome.autoId)"></i>
                                 </label>
                             </h6>
-                            <!-- <img [src]="[global.baseUrl+'Resource/Reward/'+levelIncome.file_path]" style="width: 100%;border-radius:5px;"/>  -->
-                            <img src="https://localhost:7284/Resource/Reward/MEM0000010_1_MEM0000010_1_slider2.jpg"
-                                style="width: 100%;border-radius:5px;" />
+                            <img [src]="[global.baseUrl+'Resource/Reward/'+levelIncome.file_path]" style="width: 100%;border-radius:5px;"/> 
+                            <!-- <img src="https://localhost:7284/Resource/Reward/MEM0000010_1_MEM0000010_1_slider2.jpg"
+                                style="width: 100%;border-radius:5px;" /> -->
                             <p  *ngIf="IsUpdate()!=levelIncome.autoId" style="margin-top: 10px;"><b class="text-white">Remark : </b>{{levelIncome.remark}}</p>
                             <hr style="margin: 0;">
                             <div class="EditRemark" style="display: flex;" *ngIf="IsUpdate()==levelIncome.autoId">

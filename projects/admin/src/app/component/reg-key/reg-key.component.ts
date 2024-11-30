@@ -1,19 +1,33 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, ElementRef, inject, NgModule, OnInit, ViewChild } from '@angular/core';
 import { GlobalService } from '../../services/global.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LiteralArray } from '@angular/compiler';
 import { HttpClient } from '@angular/common/http';
 import { TotalKey } from '../../model/TotalKey';
+import { Config, NgxPrintElementComponent, NgxPrintElementService } from 'ngx-print-element';
 
 @Component({
   selector: 'app-reg-key',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,NgxPrintElementComponent],
   templateUrl: './reg-key.component.html',
   styleUrl: './reg-key.component.css'
 })
 export class RegKeyComponent implements OnInit {
+ @ViewChild('tableRef') tableElement: ElementRef<HTMLTableElement>={} as ElementRef;
+  public config: Config = {
+    printMode: 'template', // template-popup
+    popupProperties: 'toolbar=yes,scrollbars=yes,resizable=yes,top=0,left=0,fullscreen=yes',
+    pageTitle: 'Madhur Aastha Company',
+    templateString: '<header></header>{{printBody}}<footer></footer>',
+    stylesheets: [{ rel: 'stylesheet', href: 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' }],
+    styles: [
+      'header, footer{ text-align: center; }',
+      'body .bg-success{ background-color: red !important; }',
+      'body .bg-danger{ background-color: red !important; }',
+    ]
+  }
   IsLoading: boolean = false;
   IsLoading2: boolean = false;
   count = 1;
@@ -23,10 +37,14 @@ export class RegKeyComponent implements OnInit {
   listkey: any = [];
   global = inject(GlobalService);
   http = inject(HttpClient);
-  constructor() { }
+  constructor(public print: NgxPrintElementService) { }
   ngOnInit(): void {
     this.GetRegKey();  
     this.TotalKey()
+  }
+  onPrint(el: ElementRef<HTMLTableElement>) {
+    this.print.print(el, { ...this.config, printMode: 'template-popup' }).subscribe(console.log);
+    this.copyKey()
   }
   GetRegKey() {
     const obj = {
@@ -61,7 +79,7 @@ export class RegKeyComponent implements OnInit {
     selBox.style.left = '0';
     selBox.style.top = '0';
     selBox.style.opacity = '0';
-    selBox.value = this.listkey.join('  ');
+    selBox.value = this.listkey.join('\r\n');
     document.body.appendChild(selBox);
     selBox.focus();
     selBox.select();
