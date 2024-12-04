@@ -1,0 +1,39 @@
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Manage Youtube Video                                                             
+                </h6>
+                <div class="mb-3">                 
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="code" #code  placeholder="Enter Youtube Code"
+                            aria-label="E-Pin Number" aria-describedby="basic-addon2">
+                        <button  (click)="Upload(code.value)" class="btn btn-primary">Upload</button>                                           
+                    </div>
+                    <div class="table-responsive" style="max-height: 440px;">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-white">
+                                    <th scope="col">#</th>
+                                    <th scope="col">Video</th>                                 
+                                    <th style="width: 1%;" scope="col">Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let code of codeList();let i=index">
+                                    <tr>
+                                        <td>{{i+1}}</td>
+                                        <td>
+                                            <iframe [src]="getUrl(code.code)"></iframe>
+                                        </td>
+                                        <td><button (click)="Delete(code.code)" class="btn btn-primary btn-sm">Delete</button></td>                                                                              
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>      
+    </div>
+</div>

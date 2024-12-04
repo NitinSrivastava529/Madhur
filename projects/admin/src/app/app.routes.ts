@@ -10,6 +10,8 @@ import { MemberDetailsComponent } from './component/member-details/member-detail
 import { LevelDetailsComponent } from './component/level-details/level-details.component';
 import { PurchaseComponent } from './component/purchase/purchase.component';
 import { RewardDistributorComponent } from './component/reward-distributor/reward-distributor.component';
+import { YouTubeVideoComponent } from './component/you-tube-video/you-tube-video.component';
+import { TermsConditionComponent } from './component/terms-condition/terms-condition.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -22,6 +24,8 @@ export const routes: Routes = [
             { path: 'level-details', component: LevelDetailsComponent,canActivate:[authGuard] },          
             { path: 'member-details/:memberid', component: MemberDetailsComponent,canActivate:[authGuard] },
             { path: 'purchase', component: PurchaseComponent,canActivate:[authGuard] },            
+            { path: 'youtube-video', component:YouTubeVideoComponent,canActivate:[authGuard] },            
+            { path: 'terms-condition', component:TermsConditionComponent,canActivate:[authGuard] },            
             { path: 'reward-distributor', component: RewardDistributorComponent,canActivate:[authGuard] }                     
         ]
     },

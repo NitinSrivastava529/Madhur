@@ -19,6 +19,8 @@ import { LayoutComponent } from './component/layout/layout.component';
 import { authGuard } from './guard/auth.guard';
 import { RegKeyComponent } from './component/reg-key/reg-key.component';
 import { TodayMemberComponent } from './component/today-member/today-member.component';
+import { CompanyPlanComponent } from './component/company-plan/company-plan.component';
+import { TermsConditionComponent } from './component/terms-condition/terms-condition.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -40,6 +42,8 @@ export const routes: Routes = [
             { path: 'refer', component: ReferComponent,canActivate:[authGuard] },
             { path: 'reg-key', component: RegKeyComponent,canActivate:[authGuard] },
             { path: 'today-member', component: TodayMemberComponent,canActivate:[authGuard] },
+            { path: 'company-plan', component: CompanyPlanComponent,canActivate:[authGuard] },
+            { path: 'terms-condition', component: TermsConditionComponent,canActivate:[authGuard] },
             { path: 'support', component: SupportComponent,canActivate:[authGuard] },          
         ]
     },   
