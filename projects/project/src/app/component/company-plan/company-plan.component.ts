@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { CONSTANT } from '../../Model/constant';
+import { CompanyPlan } from '../../Model/company-plan';
 
 @Component({
   selector: 'app-company-plan',
@@ -10,19 +12,20 @@ import { DomSanitizer } from '@angular/platform-browser';
   templateUrl: './company-plan.component.html',
   styleUrl: './company-plan.component.css'
 })
-export class CompanyPlanComponent {
+export class CompanyPlanComponent implements OnInit {
 
-  videoList: any=signal([]);
-  http=inject(HttpClient)
-  constructor(private sanitizer: DomSanitizer) {
-    this.videoList = ['fHtmv36m4mI', '5HWBGefBdzw', 'fHtmv36m4mI'];
+  videoList:WritableSignal<CompanyPlan[]>=signal<CompanyPlan[]>([]);
+  http:any=inject(HttpClient)
+  constructor(private sanitizer: DomSanitizer) {}
+  ngOnInit(): void {
+    this.GetVideo()
   }
   getUrl(code: string) {
-    return this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + code + '/');
+    return this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + code);
   }
   GetVideo() {
-    this.http.get(constant.API_URL+'api/member/GetVideo').subscribe((res:any)=>{
-       this.videoList.set(res);     
+    this.http.get(CONSTANT.API_URL+'api/member/GetVideo').subscribe((res:any)=>{ 
+      this.videoList.set(res);     
     })
  }
 }

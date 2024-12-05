@@ -1,1 +1,17 @@
-<p>terms-condition works!</p>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-8">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Manage Terms And Condition                                                             
+                </h6>
+                <div class="mb-3">                 
+                    <div class="input-group mb-3">
+                        <angular-editor [config]="editorConfig" [placeholder]="'Enter text here...'" [(ngModel)]="htmlContent"></angular-editor>                                                                                        
+                    </div>
+                    <button (click)="Submit()" class="btn btn-primary">Submit</button>                   
+                </div>
+            </div>
+        </div>      
+    </div>
+</div>
