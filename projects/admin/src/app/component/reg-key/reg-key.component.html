@@ -45,7 +45,7 @@
                                         <td>{{val.creationDate|date:'dd-MM-yyyy'}}</td>                                        
                                         <td *ngIf="val.isCopy!='Y'">
                                             <input [attr.key]="val.key" (change)="selectKey($event)" [value]="val.auotId"
-                                             type="checkbox" class="form-check-input" [checked]="(checkTotal<i)?false:true" (selectionchange)="selectKey($event)" />
+                                             type="checkbox" class="form-check-input" [checked]="(checkTotal<=i)?false:true" (selectionchange)="selectKey($event)" />
                                         </td>
                                     </tr>
                                 </ng-container>
@@ -54,33 +54,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-12 col-xl-4" *ngIf="listkey.length>0">
-            <div class="bg-secondary rounded h-100 p-4">
-                <h6 class="mb-4">                              
-                    <button class="btn btn-primary btn-sm" (click)="onPrint(tableElement)">Print Key</button>                                
-                </h6>
-                <div class="mb-3">                
-                    <div class="table-responsive" style="max-height: 440px;">
-                        <table class="table text-start align-middle table-bordered table-hover mb-0" #tableRef ngxPrintElement>
-                            <thead>
-                                <tr class="text-white">
-                                    <th scope="col">#</th>
-                                    <th scope="col">E-Pin</th>                                  
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <ng-container *ngFor="let val of listkey;let i=index">
-                                    <tr>
-                                        <td>{{i+1}}</td>
-                                        <td>{{val}}</td>                                       
-                                    </tr>
-                                </ng-container>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </div>      
     </div>
 </div>
