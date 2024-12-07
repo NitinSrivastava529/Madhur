@@ -15,22 +15,10 @@ import { Config, NgxPrintElementService } from 'ngx-print-element';
   styleUrl: './reg-key.component.css'
 })
 export class RegKeyComponent implements OnInit {
-  @ViewChild('tableRef') tableElement: ElementRef<HTMLTableElement> = {} as ElementRef;
-  public config: Config = {
-    printMode: 'template', // template-popup
-    popupProperties: 'toolbar=yes,scrollbars=yes,resizable=yes,top=0,left=0,fullscreen=yes',
-    pageTitle: 'Madhur Aastha Company',
-    templateString: '<header></header>{{printBody}}<footer></footer>',
-    stylesheets: [{ rel: 'stylesheet', href: 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' }],
-    styles: [
-      'header, footer{ text-align: center; }',
-      'body .bg-success{ background-color: red !important; }',
-      'body .bg-danger{ background-color: red !important; }',
-    ]
-  }
   IsLoading: boolean = false;
   IsLoading2: boolean = false;
   IsCopy: string = 'N';
+  key: string = "";
   count = 1;
   checkTotal = 0;
   totalKey: any = {};
@@ -39,14 +27,10 @@ export class RegKeyComponent implements OnInit {
   listkey: any = [];
   global = inject(GlobalService);
   http = inject(HttpClient);
-  constructor(public print: NgxPrintElementService) { }
+  constructor() { }
   ngOnInit(): void {
     this.GetRegKey();
     this.TotalKey()
-  }
-  onPrint(el: ElementRef<HTMLTableElement>) {
-    this.print.print(el, { ...this.config, printMode: 'template-popup' }).subscribe(console.log);
-    this.copyKey()
   }
   GetRegKey() {
     const obj = {
@@ -54,23 +38,26 @@ export class RegKeyComponent implements OnInit {
     };
     this.global.get(obj).subscribe((data: any) => {
       this.RegKey = data;
-      this.listId.push(data[0].auotId);
-      this.listkey.push(data[0].key);    
     })
   }
   selectKey(event: Event) {
+    debugger
     const isCheck = (event.target as HTMLInputElement).checked;
     const value = (event.target as HTMLInputElement).value;
-    const key = (event.target as HTMLInputElement).getAttribute('key');
-    if (isCheck == true) {
-      if (!this.listId.includes(+value))
-        this.listId.push(+value);
-      this.listkey.push(key);
-    } else {
-      if (this.listId.includes(+value))
-        this.listId.splice(this.listId.indexOf(+value), 1)
-      this.listkey.splice(this.listkey.indexOf(key), 1)
-    }
+    if (isCheck)
+      this.listkey.push(value);
+    else
+      this.listkey.splice(this.listkey.indexOf(value), 1);
+    // const key = (event.target as HTMLInputElement).getAttribute('key');
+    // if (isCheck == true) {
+    //   if (!this.listId.includes(+value))
+    //     this.listId.push(+value);
+    //   this.listkey.push(key);
+    // } else {
+    //   if (this.listId.includes(+value))
+    //     this.listId.splice(this.listId.indexOf(+value), 1)
+    //   this.listkey.splice(this.listkey.indexOf(key), 1)
+    // }
   }
   copyMessage() {
     const selBox = document.createElement('textarea');
@@ -87,7 +74,7 @@ export class RegKeyComponent implements OnInit {
   }
   copyKey() {
     this.IsLoading2 = true;
-    this.http.put(this.global.baseUrl + 'api/Member/UpdateRegKeys', this.listId).subscribe({
+    this.http.put(this.global.baseUrl + 'api/Member/UpdateRegKeys', this.listkey).subscribe({
       next: (data) => {
         this.GetRegKey();
         this.IsLoading2 = false;
@@ -96,35 +83,29 @@ export class RegKeyComponent implements OnInit {
       },
     })
   }
-  reset(){
-    this.listId = [];
+  reset() {    
     this.listkey = [];
-    this.checkTotal=0;
+    this.checkTotal = 0;
   }
   TotalKey() {
     this.http.get(this.global.baseUrl + 'api/Member/TotalKey').subscribe((res: any) => {
       this.totalKey = res;
     })
   }
-  GenerateKey() {   
-    this.listId = [];
+  GenerateKey() {    
     this.listkey = [];
-    for (var i = 0; i < this.count; i++) {
-      this.IsLoading = true;
-      const obj = {
-        url: "api/Member/GenerateKey"
-      };
-      this.global.get(obj).subscribe({
-        next: (data) => {
-          this.GetRegKey();
-        },
-        complete: () => {
-          if (i == this.count) {
-            this.IsLoading = false;
-            this.checkTotal = this.count;                    
-          }
-        }
-      })
-    }
+    this.IsLoading = true; 
+    this.http.post(this.global.baseUrl + 'api/Member/GenerateKey', this.count,{headers:this.global.headers}).subscribe({      
+      next: (data:any) => {
+        this.GetRegKey();
+        console.log(data)  
+        this.IsLoading = false;     
+        this.checkTotal=this.count;
+        this.listkey=data.message.split(',');
+      },
+      complete: () => {
+       
+      }
+    })
   }
 }
