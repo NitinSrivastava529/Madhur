@@ -1,3 +1,26 @@
 iframe{
     margin-top: 10px;
 }
+.box{
+    display: inline-flex;
+    gap: 19px;
+    border-radius: 3px;
+    padding: 10px 15px;
+}
+.icon-content{
+    display: inline-flex;
+        box-shadow: 3px 1px 12px #f1eded;
+        padding: 10px 12px;
+        align-items: center;
+        border-radius: 3px;
+        gap: 17px;
+        border: 1px solid #ededed;
+}
+.icon-content img{
+    width: 35px;
+}
+.section h5 {
+    font-weight: 500;
+    margin: 0 0 0px 0;
+    font-size: 17px;
+}

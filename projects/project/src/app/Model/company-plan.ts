@@ -1,4 +1,5 @@
 export interface CompanyPlan{
     id:number,
-    code:string
+    file:string,
+    type:string
 }

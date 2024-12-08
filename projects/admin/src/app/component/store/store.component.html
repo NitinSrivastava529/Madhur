@@ -1,0 +1,124 @@
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-4">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Add New Store</h6>
+                <form #form="ngForm">
+                    <div class="form-floating mb-3">
+                        <input type="text" #storeName="ngModel" class="form-control" name="storeName"
+                            [(ngModel)]="store.storeName" placeholder="Store Name" required minlength="3" />
+                        <label for="floatingInput">Store Name</label>
+                        <div class="text-danger">
+                            <span
+                                *ngIf="((storeName.touched || storeName.dirty)&& storeName.errors?.['required'])">store
+                                name required.</span>
+                            <span
+                                *ngIf="((storeName.touched || storeName.dirty) && storeName.errors?.['minlength'])">min
+                                3 char required.</span>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="mobile" #mobile="ngModel" [(ngModel)]="store.mobile" maxlength="10" minlength="10" required
+                            placeholder="Mobile No">
+                        <label for="floatingPassword">Mobile No</label>
+                        <div class="text-danger">
+                            <span
+                                *ngIf="((mobile.touched || mobile.dirty)&& mobile.errors?.['required'])">Mobile No is Required.</span>
+                            <span
+                                *ngIf="((mobile.touched || mobile.dirty) && mobile.errors?.['minlength'])">Min
+                                10 digit required.</span>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" name="address" #address="ngModel" [(ngModel)]="store.address" required
+                            placeholder="Full Address"></textarea>
+                        <label for="floatingTextarea">Address</label>
+                        <div class="text-danger">
+                            <span
+                                *ngIf="((address.touched || address.dirty)&& address.errors?.['required'])">Address is Required.</span>                          
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select class="form-select" name="state" #state="ngModel" [(ngModel)]="store.state" (change)="GetCity($event)" required
+                            aria-label="Floating label select example">
+                            @for (item of stateList; track $index) {
+                            <option [attr.state_code]="item.state_code" [value]="item.state_name">{{item.state_name}}
+                            </option>
+                            }
+                        </select>
+                        <div class="text-danger">
+                            <span *ngIf="((state.touched || state.dirty) && state.errors?.['required'])" >State is Required.</span>
+                        </div>
+                        <label for="floatingSelect">State</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select class="form-select" name="city" #city="ngModel" (change)=" filterStore()" [(ngModel)]="store.city" required
+                            aria-label="Floating label select example">
+                            @for (item of cityList; track $index) {
+                            <option [value]="item.distt_name">{{item.distt_name}}</option>
+                            }
+                        </select>
+                        <div class="text-danger">
+                            <span *ngIf="((city.touched || city.dirty) && city.errors?.['required'])">City is Required</span>
+                        </div>
+                        <label for="floatingSelect">City</label>
+                    </div>
+                    <div class="form-floating mb-3 flex">
+                        <input type="text" class="form-control" name="pinCode" #pinCode="ngModel" [(ngModel)]="store.pinCode" maxlength="6" minlength="6" required
+                            placeholder="Pin Code">
+                        <label>Pin Code</label>                     
+                        <button (click)="addStore()" class="btn btn-primary btn-sm" [disabled]="form.invalid"
+                            style="margin-left: 5px;">{{(store.autoId!=0)?'Update':'Submit'}}</button>
+                    </div>
+                    <div class="text-danger">
+                        <span
+                            *ngIf="((pinCode.touched || pinCode.dirty)&& pinCode.errors?.['required'])">Pin Code is Required.</span>
+                        <span
+                            *ngIf="((pinCode.touched || pinCode.dirty) && pinCode.errors?.['minlength'])">Min
+                            6 digit required.</span>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <div class="col-sm-12 col-xl-8">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Store Details
+                    <button class="btn btn-primary btn-sm" (click)="getStore()">All Store</button>
+                </h6>
+                <div class="mb-3">
+                    <div class="table-responsive" style="max-height: 440px;">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-white">
+                                    <th scope="col">Store Id</th>
+                                    <th scope="col">Store Name</th>
+                                    <th scope="col">Mobile No</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col" style="width: 13%;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let val of storeList;let i=index">
+                                    <tr>
+                                        <td>{{val.storeId}}</td>
+                                        <td>{{val.storeName}}</td>
+                                        <td>{{val.mobile}}</td>
+                                        <td><b>Address : </b>{{val.address}},<br><b>City</b> :
+                                            {{val.city}},<br><b>State</b> : {{val.state}}</td>
+                                        <td>
+                                            <button (click)="Edit(val.autoId)" class="btn btn-warning btn-sm m-2"><i
+                                                    class="fa fa-edit"></i></button>
+                                            <button (click)="Delete(val.autoId)" class="btn btn-warning btn-sm m-2"><i
+                                                    class="fa fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

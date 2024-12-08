@@ -41,8 +41,7 @@ export class LevelDetailsComponent implements OnInit {
     this.reward.file_path = event.target.files[0];
     console.log(event.target.files[0])
   }
-  SaveReward() {
-    console.log(this.reward);
+  SaveReward() {   
     this.IsLoadingRewad = true;
     var formData = new FormData();
     formData.append('AutoId', this.reward.AutoId);

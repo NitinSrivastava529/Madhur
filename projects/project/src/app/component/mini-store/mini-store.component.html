@@ -1,0 +1,26 @@
+<div id="page-content">
+    <div class="section section_team">
+        <div class="container">
+            <div class="row row-title ">
+                <div class="col s12">
+                    <div class="section-title row-title-team">
+                        <span class="theme-secondary-color">Mini</span> Store
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="text-danger text-center" *ngIf="storeList.length==0">
+                    <span>No Store Found in your City.</span>
+                </div>
+                <div class="col s12 list"  *ngFor="let val of storeList;let i=index">
+                  <b class="text-danger">Store Id : </b>{{val.storeId}}<br>
+                  <b class="text-danger">Store Name : </b>{{val.storeName}}<br>
+                  <b class="text-danger">Mobile No : </b>{{val.mobile}}<br>
+                  <b class="text-danger">Address : </b>{{val.address}}<br>
+                  <b class="text-danger">State : </b>{{val.state}}, 
+                  <b class="text-danger">City : </b>{{val.city}}
+                </div>              
+            </div>
+        </div>
+    </div>
+</div>

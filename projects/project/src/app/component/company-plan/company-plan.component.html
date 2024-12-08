@@ -4,14 +4,33 @@
             <div class="row row-title ">
                 <div class="col s12">
                     <div class="section-title row-title-team">
-                        <span class="theme-secondary-color">Company</span> Plan
+                        <span class="theme-secondary-color">Official</span> Plan
                     </div>
                 </div>
             </div>
             <div class="row">
+                <div class="col s6 m6 l2 box">
+                    <a class="icon-content" (click)=" GetPdf()">
+                        <img src="icons/pdf.png" alt="category">
+                        <h5>PDF File</h5>
+                    </a>
+                </div>
+                <div class="col s6 m6 l2 box">
+                    <a class="icon-content" (click)=" GetVideo()">
+                        <img src="icons/youtube.png" alt="category">
+                        <h5>Youtube</h5>
+                    </a>
+                </div>
                 <div class="col s12">
+                    <div class="text-danger text-center">
+                        <span>{{msg()}}</span>                        
+                    </div>
                     <ng-container *ngFor="let val of videoList();let i=index">
-                        <iframe width="100%" height="315" [src]="getUrl(val.code)">
+                        <iframe width="100%" height="315" [src]="getUrl(val.file)">
+                        </iframe>
+                    </ng-container>
+                    <ng-container *ngFor="let val of pdfList();let i=index">
+                        <iframe width="100%" height="315" [src]="getPdfUrl(val.file)">
                         </iframe>
                     </ng-container>
                 </div>

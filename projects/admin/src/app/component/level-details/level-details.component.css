@@ -41,13 +41,7 @@ ul li span{
     background-color: #191c24;
     box-shadow: 0px 0px 7px #545454;
 }
-.btn {
-    color: #fff;
-    background: #760202;
-    padding: 1px 7px;
-    transition: .5s;
-    margin: 3px 5px !important;
-}
+
 ul li span:hover{
     background: #06670fde;    
 }
@@ -65,4 +59,11 @@ ul li span:hover{
 .edit i{
     cursor: pointer;
     font-size: 14px;
+}
+.btn {
+    color: #fff;
+    background: #760202;
+    padding: 1px 7px;
+    transition: .5s;
+    margin: 3px 5px !important;
 }
