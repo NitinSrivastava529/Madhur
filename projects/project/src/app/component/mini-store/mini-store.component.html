@@ -9,8 +9,14 @@
                 </div>
             </div>
             <div class="row">
-                <div class="text-danger text-center" *ngIf="storeList.length==0">
-                    <span>No Store Found in your City.</span>
+                <div style="display: flex;align-items:baseline;">                        
+                    <input type="text" name="search" style="float: right;" #city placeholder="Village, City.." />    
+                    <button class="btn btn-danger btn-sm" (click)="getStore(city.value)" style="width: 25%;padding:0;">Find</button>                
+                    <input type="text" style="margin-left: 15px;width: 50%;" name="search" #pin placeholder="Pin Code" minlength="6" maxlength="6" />                    
+                    <button (click)="getStore(pin.value)" class="btn btn-danger btn-sm" style="width: 25%;padding:0;">Get</button>                
+                </div>
+                <div class="text-danger text-center" *ngIf="statusMsg().length>0">
+                    <span>{{statusMsg()}}</span>
                 </div>
                 <div class="col s12 list"  *ngFor="let val of storeList;let i=index">
                   <b class="text-danger">Store Id : </b>{{val.storeId}}<br>

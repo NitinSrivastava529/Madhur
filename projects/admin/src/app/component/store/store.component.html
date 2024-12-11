@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <div class="form-floating mb-3">
-                        <select class="form-select" name="state" #state="ngModel" [(ngModel)]="store.state" (change)="GetCity($event)" required
+                        <select class="form-select" name="state" #state="ngModel" [(ngModel)]="store.state" required
                             aria-label="Floating label select example">
                             @for (item of stateList; track $index) {
                             <option [attr.state_code]="item.state_code" [value]="item.state_name">{{item.state_name}}
@@ -52,7 +52,10 @@
                         <label for="floatingSelect">State</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <select class="form-select" name="city" #city="ngModel" (change)=" filterStore()" [(ngModel)]="store.city" required
+                        <input type="text" class="form-control" name="city"  [(ngModel)]="store.city" maxlength="6" minlength="6" required
+                        placeholder="Village, City.."/>
+                        <label for="city">City</label>
+                        <!-- <select class="form-select" name="city" #city="ngModel" (change)=" filterStore()" [(ngModel)]="store.city" required
                             aria-label="Floating label select example">
                             @for (item of cityList; track $index) {
                             <option [value]="item.distt_name">{{item.distt_name}}</option>
@@ -61,7 +64,7 @@
                         <div class="text-danger">
                             <span *ngIf="((city.touched || city.dirty) && city.errors?.['required'])">City is Required</span>
                         </div>
-                        <label for="floatingSelect">City</label>
+                        <label for="floatingSelect">City</label> -->
                     </div>
                     <div class="form-floating mb-3 flex">
                         <input type="text" class="form-control" name="pinCode" #pinCode="ngModel" [(ngModel)]="store.pinCode" maxlength="6" minlength="6" required

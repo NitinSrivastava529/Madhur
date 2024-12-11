@@ -24,6 +24,10 @@ export class CompanyPlanComponent implements OnInit {
   ngOnInit(): void {
    
   }
+  getImgUrl(file: string) {
+    return CONSTANT.API_URL+'Resource/Plan/' + file;
+   // return this.sanitizer.bypassSecurityTrustResourceUrl(CONSTANT.API_URL+'/Resource/Plan/' + file);
+  }
   getUrl(code: string) {
     return this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + code);
   }

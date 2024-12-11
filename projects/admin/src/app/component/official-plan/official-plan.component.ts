@@ -33,6 +33,10 @@ export class OfficialPlanComponent implements OnInit {
   getUrl(code: string) {
     return this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + code + '/')
   }
+  getImgUrl(file: string) {
+    return CONSTANT.API_URL+'Resource/Plan/' + file;
+   // return this.sanitizer.bypassSecurityTrustResourceUrl(CONSTANT.API_URL+'/Resource/Plan/' + file);
+  }
   getPdfUrl(code: string) {
     return this.sanitizer.bypassSecurityTrustResourceUrl(this.global.baseUrl + 'Resource/Plan/' + code)
   }

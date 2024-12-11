@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { GlobalService } from '../../services/global.service';
 import { state } from '@angular/animations';
@@ -14,25 +14,25 @@ import { CONSTANT } from '../../Model/constant';
   styleUrl: './mini-store.component.css'
 })
 export class MiniStoreComponent implements OnInit {
+  statusMsg=signal('');
   storeList:any = [];  
   store={
     'state':JSON.parse(localStorage.getItem('MemberInfo')||'').state,
     'city':JSON.parse(localStorage.getItem('MemberInfo')||'').city
   }
-  //   store={
-  //   'state':'Uttar Pradesh',
-  //   'city':'Lucknow'
-  // }
   http = inject(HttpClient);
   global = inject(GlobalService);
   ngOnInit(): void {
-    this.getStore()  
-  console.log(this.store)
+    this.getStore(this.store.city)  
   }
-  getStore() {
-    this.http.get(this.global.baseUrl + 'api/Member/GetStore/'+this.store.state+'/'+this.store.city).subscribe((res: any) => {
+  getStore(param:string) {
+    this.statusMsg.set('Searching Store..');
+    this.http.get(this.global.baseUrl + 'api/Member/GetStore/'+param).subscribe((res: any) => {
       this.storeList = res;
-      console.log(res)
+      if(this.storeList.length==0)
+      this.statusMsg.set('No Store Found in your City.');
+    else
+    this.statusMsg.set('');
     })
   }
 }

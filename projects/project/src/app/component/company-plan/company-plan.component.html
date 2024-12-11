@@ -23,15 +23,21 @@
                 </div>
                 <div class="col s12">
                     <div class="text-danger text-center">
-                        <span>{{msg()}}</span>                        
+                        <span>{{msg()}}</span>
                     </div>
                     <ng-container *ngFor="let val of videoList();let i=index">
                         <iframe width="100%" height="315" [src]="getUrl(val.file)">
                         </iframe>
                     </ng-container>
-                    <ng-container *ngFor="let val of pdfList();let i=index">
+                    <ng-container *ngFor="let val of pdfList();let i=index">                       
+                        @if (val.file.split('.').pop()=='pdf') {
                         <iframe width="100%" height="315" [src]="getPdfUrl(val.file)">
                         </iframe>
+                        }@else {
+                        <img [src]="getImgUrl(val.file)" />
+                        }
+
+
                     </ng-container>
                 </div>
             </div>

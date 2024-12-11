@@ -59,7 +59,12 @@
                                     <tr>
                                         <td>{{i+1}}</td>
                                         <td>
-                                            <iframe [src]="getPdfUrl(code.file)"></iframe>
+                                            @if (code.file.split('.').pop()=='pdf') {
+                                                <iframe [src]="getPdfUrl(code.file)"></iframe>
+                                                }@else {
+                                                <img [src]="getImgUrl(code.file)" />
+                                                }
+                                            
                                         </td>
                                         <td><button (click)="Delete(code.id)" class="btn btn-primary btn-sm">Delete</button></td>                                                                              
                                     </tr>
