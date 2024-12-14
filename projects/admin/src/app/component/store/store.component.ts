@@ -18,7 +18,9 @@ export class StoreComponent implements OnInit {
   storeList: IStore[] = [];
   store: Store = new Store();
   stateList: any;
+  isLoading:boolean=false;
   cityList: any;
+  param:string="";
   http = inject(HttpClient);
   global = inject(GlobalService);
   ngOnInit(): void {
@@ -43,14 +45,17 @@ export class StoreComponent implements OnInit {
     })
   }
   filterStore() {
-    this.http.get(this.global.baseUrl + 'api/Member/GetStore/'+this.store.state+'/'+this.store.city).subscribe((res: any) => {
+    this.http.get(this.global.baseUrl + 'api/Member/GetStore/'+this.param).subscribe((res: any) => {
       this.storeList = res;
+      this.param=''
     })
   }
   addStore() {
+    this.isLoading=true;
     this.http.post(this.global.baseUrl + 'api/Member/AddStore', this.store, { headers: this.global.headers }).subscribe((res: any) => {
       this.getStore();
       this.store = new Store();
+      this.isLoading=false;
     })
   }
   Delete(autoId: Number) {

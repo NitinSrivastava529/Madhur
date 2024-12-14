@@ -7,6 +7,7 @@ export class Store {
     city: String;
     state: String;
     pinCode: String;
+    type:string
 
     constructor() {
         this.autoId = 0;
@@ -15,7 +16,8 @@ export class Store {
         this.mobile = "";
         this.address = "";
         this.city = "";
-        this.state = "";
+        this.state = "Select State";
         this.pinCode = "";
+        this.type = "Dealer";
     }
 }

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { GlobalService } from '../../services/global.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -17,6 +17,8 @@ export class MemberListComponent {
   IsLoading: boolean = false;
   memberInfo: any = {};
   allMember: any = {};
+  param: boolean=false;
+  isCheck:boolean=false;
   temp: string = "";
   filterObj = {
     "name": "string",
@@ -63,8 +65,20 @@ export class MemberListComponent {
       res.mobileNo.toLowerCase().includes(value) |
       res.regPin.toLowerCase().includes(value));
   }
-  GetMembers() {        
+  GetMembers() {     
     this._http.post(this.global.baseUrl+'api/Member/GetMembers',this.filterObj,{headers:this.global.headers}).subscribe({
+      next: (data) => {        
+        this.memberInfo = data;
+        this.allMember = data;      
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
+  }
+  GetMembersActive() {   
+     var param1=(this.param)?'Y':'N';   
+    this._http.get(this.global.baseUrl+'api/Member/GetMembersActive/'+param1).subscribe({
       next: (data) => {        
         this.memberInfo = data;
         this.allMember = data;

@@ -7,4 +7,5 @@ export interface IStore {
     city: String;
     state: String;
     pinCode: String;
+    type: String;
 }

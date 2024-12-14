@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { constant } from '../model/constant';
 
 @Injectable({
   providedIn: 'root'
@@ -21,16 +22,16 @@ export class GlobalService {
     });
   constructor(private http: HttpClient) { }
   post(data: any): Observable<any> {
-    return this.http.post(this.baseUrl + data.url, data, { headers: this.headers });
+    return this.http.post(constant.API_URL + data.url, data, { headers: this.headers });
   }
   UploadFile(url:string,data: any): Observable<any> {             
-    return this.http.post(this.baseUrl + url, data);
+    return this.http.post(constant.API_URL + url, data,{responseType: 'text'});
   }
   put(url: string, data: any): Observable<any> {
-    return this.http.put(this.baseUrl + url, data, { headers: this.headers });
+    return this.http.put(constant.API_URL + url, data, { headers: this.headers });
   }
   get(data: any): Observable<any> {
-    return this.http.get(this.baseUrl + data.url, data);
+    return this.http.get(constant.API_URL + data.url, data);
   }
 
   public loadScript() {

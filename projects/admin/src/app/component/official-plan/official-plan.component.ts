@@ -20,6 +20,7 @@ export class OfficialPlanComponent implements OnInit {
     'type': '-'
   }
   file_path: any;
+  isLoading:boolean=false;
   videoList: any = [];
   pdfList: any = [];
   changes = signal('-');
@@ -34,16 +35,15 @@ export class OfficialPlanComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + code + '/')
   }
   getImgUrl(file: string) {
-    return CONSTANT.API_URL+'Resource/Plan/' + file;
+    return constant.API_URL+'Resource/Plan/' + file;
    // return this.sanitizer.bypassSecurityTrustResourceUrl(CONSTANT.API_URL+'/Resource/Plan/' + file);
   }
   getPdfUrl(code: string) {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(this.global.baseUrl + 'Resource/Plan/' + code)
+    return this.sanitizer.bypassSecurityTrustResourceUrl(CONSTANT.API_URL + 'Resource/Plan/' + code)
   }
   GetVideo() {
     this.http.get(constant.API_URL + 'api/member/GetPlan?type=Youtube').subscribe((res: any) => {
-      this.videoList = res;
-      console.log(res)
+      this.videoList = res;      
     })
   }
   GetPdf() {
@@ -52,16 +52,17 @@ export class OfficialPlanComponent implements OnInit {
     })
   }
   upload(type: string) {
+    this.isLoading=true;
     var formData = new FormData();
     formData.append('file', this.uploadData.file);
     formData.append('type', type);
-    this.global.UploadFile('api/member/AddPlan', formData).subscribe((res)=> {
-      console.log(res.json())
+    this.global.UploadFile('api/member/AddPlan', formData).subscribe((res)=> {     
       if (type == 'Youtube')
         this.GetVideo()
       else
         this.GetPdf()
       this.changes.set('Uploaded')
+      this.isLoading=false;
     });
 
   }
