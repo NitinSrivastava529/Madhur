@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { CONSTANT } from '../Model/constant';
 
 @Injectable({
   providedIn: 'root'
@@ -16,13 +17,16 @@ export class GlobalService {
   post(data: any): Observable<any> {
     return this.http.post(this.baseUrl + data.url, data, { headers: this.headers });
   }
+  UploadFile(url: string, data: any): Observable<any> {
+    return this.http.post(CONSTANT.API_URL + url, data, { responseType: 'text' });
+  }
   get(data: any): Observable<any> {
     return this.http.get(this.baseUrl + data.url, data);
   }
   calAge(dob_year: string, dob_month: string, dob_day: string) {
     debugger
-    var month=(new Date().getMonth() + 1);const day=(new Date().getDate());
-    const date = (new Date().getFullYear()) + '' + (month<10)?'0'+month:month + '' + (day<10)?'0'+day:day;
+    var month = (new Date().getMonth() + 1); const day = (new Date().getDate());
+    const date = (new Date().getFullYear()) + '' + (month < 10) ? '0' + month : month + '' + (day < 10) ? '0' + day : day;
     const dob = (dob_year) + (dob_month) + (dob_day);
     // const age = String(parseFloat(date) - parseFloat(dob));
     // return parseInt(age.substring(2, 0));

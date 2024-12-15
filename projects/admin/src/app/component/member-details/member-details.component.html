@@ -2,12 +2,12 @@
     <div class="row g-4">
         <div class="col-sm-12 col-xl-5">
             <div class="bg-secondary rounded h-100 p-4">
-                <h6 class="mb-4">Member Profile Details &nbsp;: &nbsp;                            
-                <ul style="padding: 0;">
-                    <li class="levelShow">Level<span> {{LevelCount[0].level}}</span></li>
-                    <li class="levelShow">Mem<span>{{totalMem}}</span></li>
-                    <li class="levelShow">Pur<span>{{totalPur}}</span></li>
-                    <li class="levelShow">Total<span>{{LevelCount[0].total}}</span></li>
+                <h6 class="mb-4">Member Profile Details &nbsp;: &nbsp;
+                    <ul style="padding: 0;">
+                        <li class="levelShow">Level<span> {{LevelCount[0].level}}</span></li>
+                        <li class="levelShow">Mem<span>{{totalMem}}</span></li>
+                        <li class="levelShow">Pur<span>{{totalPur}}</span></li>
+                        <li class="levelShow">Total<span>{{LevelCount[0].total}}</span></li>
                     </ul>
                 </h6>
 
@@ -27,11 +27,11 @@
                             <td>Member Name</td>
                             <td>:</td>
                             <td>{{Info.memberName}}</td>
-                        </tr>                      
+                        </tr>
                         <tr>
                             <td>Date of Birth</td>
                             <td>:</td>
-                            <td>{{Info.dob|date:'dd-mm-yyyy'}}</td>                           
+                            <td>{{Info.dob|date:'dd-mm-yyyy'}}</td>
                         </tr>
                         <tr>
                             <td>Mobile No</td>
@@ -81,8 +81,8 @@
             <div class="bg-secondary rounded h-100 p-4">
                 <h6 class="mb-4">Member Self Team
                     <p id="loadingContent" *ngIf="IsLoading">data is loading...
-                    <img  class="loading" src="/loading.gif"/>
-                </p>
+                        <img class="loading" src="/loading.gif" />
+                    </p>
                 </h6>
                 <div class="table-responsive" style="max-height: 340px;">
                     <table class="table text-start align-middle table-bordered table-hover mb-0">
@@ -90,25 +90,34 @@
                             <tr class="text-white">
                                 <th scope="col">#</th>
                                 <th scope="col">MemberId</th>
-                                <th scope="col">Member Name</th>                                                                                                 
-                                <th scope="col">Mobile No</th>                                                                                                 
-                                <th scope="col">Total</th>                                                                                                 
-                                                                                                                            
+                                <th scope="col">Member Name</th>
+                                <th scope="col">Mobile No</th>
+                                <th scope="col">Total</th>
+
                             </tr>
                         </thead>
                         <tbody>
                             <ng-container *ngFor="let val of selfMember;let i=index">
                                 <tr>
                                     <td>{{i+1}}</td>
-                                    <td>{{val.memberId}}</td>                                    
-                                    <td>{{val.memberName}}</td>                                    
-                                     <td>{{val.mobileNo}}</td>   
-                                     <td>{{val.total}}</td>                                                                                                 
+                                    <td>{{val.memberId}}</td>
+                                    <td>{{val.memberName}}</td>
+                                    <td>{{val.mobileNo}}</td>
+                                    <td>{{val.total}}</td>
                                 </tr>
-                            </ng-container>                                                                   
+                            </ng-container>
                         </tbody>
                     </table>
                 </div>
             </div>
-        </div>       
+        </div>
+        <div class="col-sm-12 col-xl-12 mb-3">
+            <div class="bg-secondary rounded h-100 p-4">
+                <ng-container style="display: flex;" *ngFor="let val of kycInfo;let i=index">
+                    <a href="#" [download]="val.file">
+                        <img [src]="getUrl(val.file)" class="kyc" />
+                    </a>
+                </ng-container>
+            </div>
+        </div>
     </div>

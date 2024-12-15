@@ -76,18 +76,6 @@ export class MemberListComponent {
       }
     })
   }
-  GetMembersActive() {   
-     var param1=(this.param)?'Y':'N';   
-    this._http.get(this.global.baseUrl+'api/Member/GetMembersActive/'+param1).subscribe({
-      next: (data) => {        
-        this.memberInfo = data;
-        this.allMember = data;
-      },
-      error: (error) => {
-        console.log(error);
-      }
-    })
-  }
   UpdateStatus(memberId: string) {
     this.global.put("api/Member/UpdateStatus/" + memberId, {}).subscribe()
   }

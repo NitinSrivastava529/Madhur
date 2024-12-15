@@ -1,4 +1,4 @@
-import { Component, Inject, inject } from '@angular/core';
+import { Component, Inject, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { GlobalService } from '../../services/global.service';
 import { HttpClient } from '@angular/common/http';
@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   LevelCount:any;
   global = inject(GlobalService);
   route = inject(Router);
@@ -19,8 +19,11 @@ export class HeaderComponent {
   memberId=localStorage.getItem('MemberId');
   memberInfo:any={};
   constructor(){
+  }
+  ngOnInit(): void {
+    this.global.loadScript();
     this.GetMemberInfo();
-    this.GetLevelCount();
+    this.GetLevelCount();    
   }
   GetMemberInfo(){
      this.http.get(this.global.baseUrl+'api/Member/GetMember/'+ localStorage.getItem('MemberId')).subscribe((res=>{

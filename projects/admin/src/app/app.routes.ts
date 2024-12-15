@@ -14,6 +14,7 @@ import { YouTubeVideoComponent } from './component/you-tube-video/you-tube-video
 import { TermsConditionComponent } from './component/terms-condition/terms-condition.component';
 import { StoreComponent } from './component/store/store.component';
 import { OfficialPlanComponent } from './component/official-plan/official-plan.component';
+import { DeactiveMemberComponent } from './component/deactive-member/deactive-member.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -23,6 +24,7 @@ export const routes: Routes = [
             { path: 'dashboard', component: DashboardComponent,canActivate:[authGuard] },
             { path: 'reg-key', component: RegKeyComponent,canActivate:[authGuard] },
             { path: 'member-list', component: MemberListComponent,canActivate:[authGuard] },          
+            { path: 'deactive-member', component: DeactiveMemberComponent,canActivate:[authGuard] },          
             { path: 'level-details', component: LevelDetailsComponent,canActivate:[authGuard] },          
             { path: 'member-details/:memberid', component: MemberDetailsComponent,canActivate:[authGuard] },
             { path: 'purchase', component: PurchaseComponent,canActivate:[authGuard] },            

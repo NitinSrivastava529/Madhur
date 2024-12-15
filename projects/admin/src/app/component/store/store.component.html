@@ -63,7 +63,7 @@
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" name="city" [(ngModel)]="store.city" required
                             placeholder="Village, City.." />
-                        <label for="city">City</label>
+                        <label for="city">Village/City</label>
                         <!-- <select class="form-select" name="city" #city="ngModel" (change)=" filterStore()" [(ngModel)]="store.city" required
                             aria-label="Floating label select example">
                             @for (item of cityList; track $index) {
@@ -97,7 +97,7 @@
             <div class="bg-secondary rounded h-100 p-4">             
                 <div class="col-sm-12 col-xl-8">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" [(ngModel)]="param"  placeholder="Search By Store Id,Mobile,City"
+                        <input type="text" class="form-control" [(ngModel)]="param"  placeholder="Search By Store Id,Mobile,City,Store Type"
                             aria-label="type" aria-describedby="basic-addon2">
                         <button type="submit" (click)="filterStore()" class="btn btn-primary">Get Store</button>
                         <button class="btn btn-primary btn-sm" (click)="getStore()">All Store</button>
@@ -113,7 +113,7 @@
                                     <th scope="col">Mobile No</th>
                                     <th scope="col">Type</th>
                                     <th scope="col">Address</th>
-                                    <th scope="col" style="width: 13%;">Action</th>
+                                    <th scope="col" style="width: 1%;">CMD</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -123,13 +123,13 @@
                                         <td>{{val.storeName}}</td>
                                         <td>{{val.mobile}}</td>
                                         <td>{{val.type}}</td>
-                                        <td><b>Address : </b>{{val.address}},<br><b>City</b> :
+                                        <td><b>Address : </b>{{val.address}},<br><b>Village/City</b> :
                                             {{val.city}},<br><b>State</b> : {{val.state}}</td>
                                         <td>
                                             <button (click)="Edit(val.autoId)" class="btn btn-warning btn-sm m-2"><i
                                                     class="fa fa-edit"></i></button>
-                                            <button (click)="Delete(val.autoId)" class="btn btn-warning btn-sm m-2"><i
-                                                    class="fa fa-trash"></i></button>
+                                            <!-- <button (click)="Delete(val.autoId)" class="btn btn-warning btn-sm m-2"><i
+                                                    class="fa fa-trash"></i></button> -->
                                         </td>
                                     </tr>
                                 </ng-container>

@@ -19,12 +19,12 @@
                     <span>{{statusMsg()}}</span>
                 </div>
                 <div class="col s12 list"  *ngFor="let val of storeList;let i=index">
-                  <b class="text-danger">Store Id : </b>{{val.storeId}}<br>
+                  <b class="text-danger">Store Id : </b>{{val.storeId}}, <label class="type">{{val.type}}</label><br>
                   <b class="text-danger">Store Name : </b>{{val.storeName}}<br>
                   <b class="text-danger">Mobile No : </b>{{val.mobile}}<br>
                   <b class="text-danger">Address : </b>{{val.address}}<br>
                   <b class="text-danger">State : </b>{{val.state}}, 
-                  <b class="text-danger">City : </b>{{val.city}}
+                  <b class="text-danger">Village/City : </b>{{val.city}}
                 </div>              
             </div>
         </div>

@@ -88,8 +88,7 @@ export class LevelDetailsComponent implements OnInit {
   GetReward(memberId: string) {    
     this.IsLoading = true;
     this._http.get(this.global.baseUrl + 'api/Member/GetReward?MemberId=' + memberId, {}).subscribe({
-      next: (data) => {
-        console.log(data)
+      next: (data) => {   
         this.levelIncome = data;
         this.IsLoading = false;
       },

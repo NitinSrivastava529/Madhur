@@ -1,0 +1,20 @@
+.response{
+    color: red;
+    font-size: 14px;
+
+}
+.data{
+    margin-top: 20px;
+    text-align: center;    
+}
+.loading {
+    width: 45px;
+    background: #000000;
+}
+img{
+    border: 2px solid #e3e3e3;
+    margin-top: 3px;
+    background: #ffffff;
+    padding: 7px;
+    border-radius: 5px;
+}

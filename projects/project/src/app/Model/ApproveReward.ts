@@ -1,11 +1,11 @@
 export class ApproveReward {
     MemberId: string;
-    Distributorid: string;
+    storeId: string;
     Level: string;
     key: string;
     constructor() {
         this.MemberId = '';
-        this.Distributorid = '';
+        this.storeId = '';
         this.Level = '';
         this.key = ''
     }

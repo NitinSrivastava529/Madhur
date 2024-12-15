@@ -1,5 +1,5 @@
 export interface RewardInfo{
     memberId:string;
-    distributorId:string;
+    storeId:string;
     level:string;
 }
