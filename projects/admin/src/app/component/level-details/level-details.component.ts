@@ -50,8 +50,10 @@ export class LevelDetailsComponent implements OnInit {
     formData.append('Remark', this.reward.Remark);
     formData.append('file_path', this.reward.file_path);
 
-    this.global.UploadFile('api/Member/AddReward', formData).subscribe((res) => {
+    this.global.UploadFile('api/Member/AddReward', formData).subscribe((res:any) => {
+      res=JSON.parse(res)      
       if (res.result) {
+        alert(res.message)
         this.IsLoadingRewad = false;
         for (var r in this.reward) delete this.reward[r];
       }
