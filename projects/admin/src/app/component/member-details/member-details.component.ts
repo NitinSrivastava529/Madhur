@@ -60,7 +60,7 @@ export class MemberDetailsComponent implements OnInit {
   }
   selfMemberInfo() {
     this.IsLoading = true;
-    this.http.get(this.global.baseUrl + 'api/Member/AllSelfMemberAdmin?MemberId=' + this.memberId + '&Logic=AllSelfMember').subscribe(res => {
+    this.http.get(this.global.baseUrl + 'api/Member/AllSelfMemberAdmin?MemberId=' + this.memberId).subscribe(res => {
       this.selfMember = res;
       this.IsLoading = false;
       this.totalInfo();
