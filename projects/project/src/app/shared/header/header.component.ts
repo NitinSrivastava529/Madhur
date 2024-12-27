@@ -22,8 +22,11 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit(): void {
     this.global.loadScript();
-    this.GetMemberInfo();
-    this.GetLevelCount();    
+     this.GetMemberInfo();
+     this.GetLevelCount();    
+  }
+  checkLevel(){
+    return ['3','4','5','6','7','8','9'].some(a=>a==this.LevelCount[0].level);
   }
   GetMemberInfo(){
      this.http.get(this.global.baseUrl+'api/Member/GetMember/'+ localStorage.getItem('MemberId')).subscribe((res=>{
@@ -33,7 +36,7 @@ export class HeaderComponent implements OnInit {
   }
     GetLevelCount() {
     this.http.get(this.global.baseUrl + 'api/Member/LevelCount/' + localStorage.getItem('MemberId')).subscribe((res => {
-      this.LevelCount = res;
+      this.LevelCount = res;     
     }))
   }
   logout() {

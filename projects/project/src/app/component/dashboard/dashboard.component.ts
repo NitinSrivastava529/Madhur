@@ -26,8 +26,7 @@ export class DashboardComponent implements OnInit {
   }
   GetBanner() {
     this._http.get(this._global.baseUrl + 'api/Member/GetBanner').subscribe((res) => {
-      this.bannerList = res;
-      console.log(res)
+      this.bannerList = res;    
     })
   }
 }

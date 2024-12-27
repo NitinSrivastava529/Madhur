@@ -49,10 +49,9 @@ export class TeamComponent {
     }))
   }
   GetMember() {
-    this.http.get(this.global.baseUrl + 'api/Member/AllMember?MemberId=' + localStorage.getItem('MemberId') + '&Logic=AllMember').subscribe(res => {
+    this.http.get(this.global.baseUrl + 'api/Member/AllMember?MemberId=' + localStorage.getItem('MemberId')).subscribe(res => {
       this.allLevelInfo = res;
-      this.levelInfo = res;
-      this.totalCal()
+      this.levelInfo = res;           
     })
   }
 }

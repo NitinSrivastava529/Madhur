@@ -20,7 +20,7 @@ export class LevelReportComponent implements OnInit {
     this.GetMember()
   }
   GetMember() {
-    this.http.get(this.global.baseUrl+'api/Member/AllSelfMember?MemberId='+localStorage.getItem('MemberId')+'&Logic=AllSelfMember').subscribe(res => {
+    this.http.get(this.global.baseUrl+'api/Member/AllSelfMember?MemberId='+localStorage.getItem('MemberId')).subscribe(res => {
       this.allLevelInfo = res;
       this.levelInfo = res;      
     })
