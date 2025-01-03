@@ -41,8 +41,7 @@
                                 <option *ngFor="let year of yearList">
                                     {{year}}
                                 </option>
-                             </select>
-                             {{this.obj.dob|date:'yyyyMMdd'}}                             
+                             </select>                                                         
                         </div>
                         <input name="aadharNo" [(ngModel)]="obj.aadharNo" type="text" class="validate"
                             placeholder="Aadhar No">
@@ -90,7 +89,7 @@
                             Terms & Conditions.
                         </label>
                         <p class="text-center">
-                            <button class="btn" (click)="Register()">SIGN UP NOW</button>
+                            <button *ngIf="!IsLoading" class="btn" (click)="Register()">SIGN UP NOW</button>
                         </p>
                         <img *ngIf="IsLoading" src="/images/loading.gif" />
                     </div>
