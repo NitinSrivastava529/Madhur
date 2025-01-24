@@ -23,6 +23,7 @@ import { CompanyPlanComponent } from './component/company-plan/company-plan.comp
 import { TermsConditionComponent } from './component/terms-condition/terms-condition.component';
 import { MiniStoreComponent } from './component/mini-store/mini-store.component';
 import { KycComponent } from './component/kyc/kyc.component';
+import { SubscribeUploadComponent } from './component/subscribe-upload/subscribe-upload.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -48,6 +49,7 @@ export const routes: Routes = [
             { path: 'terms-condition', component: TermsConditionComponent,canActivate:[authGuard] },
             { path: 'mini-store', component: MiniStoreComponent,canActivate:[authGuard] },
             { path: 'kyc', component: KycComponent,canActivate:[authGuard] },
+            { path: 'subscribe-upload', component: SubscribeUploadComponent,canActivate:[authGuard] },
             { path: 'support', component: SupportComponent,canActivate:[authGuard] },          
         ]
     },   

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { GlobalService } from '../../services/global.service';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
@@ -12,7 +12,8 @@ import { DomSanitizer } from '@angular/platform-browser';
   standalone: true,
   imports: [CommonModule, LayoutComponent, RouterLink],
   templateUrl: './member-details.component.html',
-  styleUrl: './member-details.component.css'
+  styleUrl: './member-details.component.css',
+  changeDetection:ChangeDetectionStrategy.Default
 })
 export class MemberDetailsComponent implements OnInit {
   LevelCount: any = {};
@@ -22,6 +23,7 @@ export class MemberDetailsComponent implements OnInit {
   totalMem: number = 0;
   totalPur: number = 0;
   IsLoading: boolean = false;
+  IsSubcribe=signal('')
   memberId: any = "";
   global = inject(GlobalService);
   http = inject(HttpClient);
@@ -34,6 +36,7 @@ export class MemberDetailsComponent implements OnInit {
   }
   GetKyc() {
     this.http.get(constant.API_URL + 'api/member/GetKyc/' + this.memberId).subscribe((res: any) => {
+      console.warn(res)
       this.kycInfo = res;
     })
   }
@@ -47,6 +50,9 @@ export class MemberDetailsComponent implements OnInit {
       else
         this.totalMem++;
     })
+  }
+  isLevel(){
+    return Object.keys(this.LevelCount).length>0
   }
   GetMember() {
     this.http.get(this.global.baseUrl + 'api/Member/GetMember/' + this.memberId).subscribe((res => {
@@ -65,5 +71,15 @@ export class MemberDetailsComponent implements OnInit {
       this.IsLoading = false;
       this.totalInfo();
     })
+  }
+  UpdateSubscribe(memberId: string) {
+    this.IsSubcribe.set('Updating..')
+    this.global.put("api/Member/UpdateSubscribe/" + memberId, {}).subscribe(
+      (res :any)=> {
+        this.IsSubcribe.set('')
+        this.GetMember()
+      }
+    )
+    
   }
 }

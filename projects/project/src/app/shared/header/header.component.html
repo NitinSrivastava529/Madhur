@@ -45,7 +45,7 @@
     <li class="profile">
       <div class="li-profile-info">
         <img src="images/profile.png" alt="profile">
-        <h2>{{memberInfo.memberName}}</h2>
+       <h2> <i *ngIf="memberInfo.isSubscribe=='Y'" class="fa fa-check-circle subscribe" ></i>{{memberInfo.memberName}}</h2>
         <div class="emailprofile"></div>
         <div class="balance">                             
           Level : <span>{{LevelCount[0].level}}</span>
@@ -70,13 +70,16 @@
       <a href="#" routerLink="/change-password"><i class="fas fa-lock"></i>Change Password</a>
     </li>
     <li>
+      <a href="#" routerLink="/subscribe-upload"><i class="fas fa-users"></i>Subscribe Upload</a>
+    </li>
+    <li>
       <a href="#" routerLink="/team"><i class="fas fa-users"></i>My Team</a>
     </li>    
     <li>
       <a href="#" routerLink="/support"><i class="fas fa-phone-square"></i>Support</a>
     </li>
     <li>
-      <a href="#" routerLink="/terms-condition"><i class="fas fa-phone-square"></i>Terms And Condition</a>
+      <a href="#" routerLink="/terms-condition"><i class="fas fa-home"></i>Terms And Condition</a>
     </li>
     <li>
       <a (click)="logout()"><i class="fas fa-sign-out-alt"></i>Sign Out</a>

@@ -1,26 +1,26 @@
+import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { GlobalService } from '../../services/global.service';
-import { CONSTANT } from '../../Model/constant';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { GlobalService } from '../../services/global.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { CONSTANT } from '../../Model/constant';
 
 @Component({
-  selector: 'app-kyc',
+  selector: 'app-subscribe-upload',
   standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './kyc.component.html',
-  styleUrl: './kyc.component.css'
+   imports: [CommonModule, FormsModule],
+  templateUrl: './subscribe-upload.component.html',
+  styleUrl: './subscribe-upload.component.css'
 })
-export class KycComponent implements OnInit {
+export class SubscribeUploadComponent implements OnInit {
   response = signal('No Document Uploaded.')
   isFile:boolean=false;
   isLoading: boolean = false;
   uploadData: any = {
     'memberId': localStorage.getItem('MemberId'),
     'file': File,
-    'type': 'Aadhar'
+    'type': 'subscribe'
   }
   kycInfo: any;
   http = inject(HttpClient)
@@ -33,8 +33,8 @@ export class KycComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl(CONSTANT.API_URL + 'Resource/Kyc/' + file)
   }
   GetKyc() {
-    this.http.get(CONSTANT.API_URL + 'api/member/GetKyc/' + localStorage.getItem('MemberId')).subscribe((res: any) => {
-      this.kycInfo = res;
+    this.http.get(CONSTANT.API_URL + 'api/member/GetKyc/' + localStorage.getItem('MemberId')).subscribe((res: any) => {      
+      this.kycInfo =res;
       if(this.kycInfo.length>0)
         this.response.set('')
       else

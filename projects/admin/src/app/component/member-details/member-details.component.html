@@ -2,13 +2,13 @@
     <div class="row g-4">
         <div class="col-sm-12 col-xl-5">
             <div class="bg-secondary rounded h-100 p-4">
-                <h6 class="mb-4">Member Profile Details &nbsp;: &nbsp;
-                    <ul style="padding: 0;">
+                <h6 class="mb-4">Member Profile Details &nbsp;: &nbsp;                                                    
+                    <ul style="padding: 0;" *ngIf="isLevel()">
                         <li class="levelShow">Level<span> {{LevelCount[0].level}}</span></li>
                         <li class="levelShow">Mem<span>{{LevelCount[0].member}}</span></li>
                         <li class="levelShow">Pur<span>{{LevelCount[0].purchase}}</span></li>
                         <li class="levelShow">Total<span>{{LevelCount[0].total}}</span></li>
-                    </ul>
+                    </ul>                
                 </h6>
 
                 <div class="table-responsive">
@@ -21,7 +21,7 @@
                         <tr>
                             <td>Member Id</td>
                             <td>:</td>
-                            <td>{{Info.memberId}}</td>
+                            <td>{{Info.memberId}}  : <b style="color: green;"> {{(Info.isSubscribe=='Y')?'Subscribed':'-'}}</b></td>
                         </tr>
                         <tr>
                             <td>Member Name</td>
@@ -112,12 +112,29 @@
             </div>
         </div>
         <ng-container style="display: flex;" *ngFor="let val of kycInfo;let i=index">
-        <div class="col-sm-12 col-md-4 col-xl-4 mb-3">
-            <div class="bg-secondary rounded h-100 p-4">             
-                    <a href="#" [download]="val.file">
-                        <img [src]="getUrl(val.file)" class="kyc" />
-                    </a>               
-            </div>
-        </div>
+            @if(val.type=='subscribe'){
+                <div class="col-sm-12 col-md-4 col-xl-4 mb-3">
+                    <div class="bg-secondary rounded h-100 p-4 text-center">   
+                        <button (click)="UpdateSubscribe(val.memberId)" style="margin-top: -10px;margin-bottom: 5px;" class="btn btn-success btn-sm pull-right">Approve Subscribtion
+                            <img  *ngIf="IsSubcribe()!=''" class="loading" src="/loading.gif" />
+                        </button>
+
+                            <a href="#" [download]="val.file">
+                                <img [src]="getUrl(val.file)" class="kyc" />
+                            </a>      
+                             
+                    </div>
+                </div>
+            }
+            @else{
+                <div class="col-sm-12 col-md-4 col-xl-4 mb-3">
+                    <div class="bg-secondary rounded h-100 p-4">             
+                            <a href="#" [download]="val.file">
+                                <img [src]="getUrl(val.file)" class="kyc" />
+                            </a>               
+                    </div>
+                </div>
+            }
+
     </ng-container> 
     </div>
