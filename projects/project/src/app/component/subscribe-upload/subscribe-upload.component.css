@@ -18,3 +18,13 @@ img{
     padding: 7px;
     border-radius: 5px;
 }
+.info{   
+    background: #f7f7f7;
+    font-size: 14px;
+    color: #E91E63;
+    height: 73px;
+    display: block;
+    margin-bottom: 10px;
+    padding: 7px;
+    border-radius: 4px;
+}

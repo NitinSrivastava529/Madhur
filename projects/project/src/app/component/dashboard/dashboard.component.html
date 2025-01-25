@@ -121,8 +121,8 @@
 </div>
 <div class="section promo">
     <div class="container">
-        <div class="col s12">
-            <img src="images/refer.png" routerLink="/refer" alt="promo">
+        <div class="col s12">           
+            <label [routerLink]="verified().class=='Subscribe'?'/subscribe-upload':'/dashboard'" [class]="verified().class"><i *ngIf="verified().class=='Subscribed'" class="fa fa-check-circle">&nbsp;</i>{{verified().value}}</label>           
         </div>
     </div>
 </div>

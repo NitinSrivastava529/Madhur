@@ -1,0 +1,20 @@
+.Subscribe{
+    background: #F44336;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    display: block;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 13px;
+}
+.Subscribed{
+    background: #048615;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    display: block;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 13px;
+}
