@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { GlobalService } from '../../services/global.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CONSTANT } from '../../Model/constant';
+import { CompanyPlan } from '../../Model/company-plan';
 
 @Component({
   selector: 'app-subscribe-upload',
@@ -14,6 +15,7 @@ import { CONSTANT } from '../../Model/constant';
   styleUrl: './subscribe-upload.component.css'
 })
 export class SubscribeUploadComponent implements OnInit {
+    videoList:WritableSignal<CompanyPlan[]>=signal<CompanyPlan[]>([]);
   response = signal('No Document Uploaded.')
   isFile:boolean=false;
   isLoading: boolean = false;
@@ -28,9 +30,18 @@ export class SubscribeUploadComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer) { }
   ngOnInit(): void {
     this.GetKyc()
+    this.GetVideo()
+  }
+  getVideoUrl(code: string) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + code);
   }
   getUrl(file: string) {
     return this.sanitizer.bypassSecurityTrustResourceUrl(CONSTANT.API_URL + 'Resource/Kyc/' + file)
+  }
+  GetVideo() {
+    this.http.get(CONSTANT.API_URL + 'api/member/GetPlan?type=Youtube').subscribe((res: any) => {     
+      this.videoList.set([res[0]]);       
+    })
   }
   GetKyc() {
     this.http.get(CONSTANT.API_URL + 'api/member/GetKyc/' + localStorage.getItem('MemberId')).subscribe((res: any) => {      

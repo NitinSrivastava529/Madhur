@@ -13,7 +13,7 @@
           <div class="info">       
             <label style="white-space: pre;">Re-Purchase E-Pin</label>
             <input type="text" name="nPassword" [(ngModel)]="RegKey" placeholder="Re-Purchase E-Pin" />
-            <button class="btn" (click)="Repurchase()">Submit</button>
+            <button *ngIf="!IsLoading" class="btn" (click)="Repurchase()">Submit</button>
           </div>
         </div>
       </div>

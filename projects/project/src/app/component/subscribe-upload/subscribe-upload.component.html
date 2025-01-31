@@ -12,7 +12,11 @@
                 <div class="col s12">
                 <label class="info">कंपनी  की  लेटेस्ट डिटेल प्राप्त करने के लिए  youtube चैनल को 
                     Subscribe करें और स्क्रीनशॉट अपलोड करें जिससे आपका account verification  हो जाएगा</label>
-                    </div>
+                    </div>                                 
+                    <ng-container *ngFor="let val of videoList();let i=index">
+                        <iframe width="100%" height="315" [src]="getVideoUrl(val.file)">
+                        </iframe>
+                    </ng-container>
                 <div class="col s12 text-center">
                   
                     <div style="display: flex;align-items:baseline;">            

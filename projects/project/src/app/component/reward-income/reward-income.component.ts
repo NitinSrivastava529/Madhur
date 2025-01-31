@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 })
 export class RewardIncomeComponent implements OnInit {
 
+  IsLoading:boolean=false;
   repurchaseInfo: any =[];
   RegKey: string = "";
   _route = inject(Router);
@@ -29,6 +30,7 @@ export class RewardIncomeComponent implements OnInit {
       alert('Please Enter Key');
       return;
     };
+    this.IsLoading=true;
     var obj = {
       'url': 'api/Member/Repurchase?memberId=' + localStorage.getItem('MemberId') + '&RegKey=' + this.RegKey,
     }
@@ -36,6 +38,8 @@ export class RewardIncomeComponent implements OnInit {
       alert(res.message);
       if (res.result)
         this.GetRepurchase();
+
+      this.IsLoading=false;
     })
   }
   GetRepurchase() {    
