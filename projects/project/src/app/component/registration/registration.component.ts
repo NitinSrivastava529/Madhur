@@ -73,10 +73,9 @@ export class RegistrationComponent implements OnInit {
     for (var i = 1; i < 13; i++) {
       this.monthList.push((i < 10) ? ('0' + i) : i)
     }
-    for (var i = 1960; i < 2007; i++) {
+    for(var i=1960;i<=new Date().getFullYear()-18;i++){ 
       this.yearList.push(i)
     }
-
   }
   GetState() {
     this.http.get(this.global.baseUrl + 'api/Auth/GetState').subscribe((res => {
