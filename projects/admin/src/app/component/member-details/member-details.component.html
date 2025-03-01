@@ -81,7 +81,7 @@
             <div class="bg-secondary rounded h-100 p-4">
                 <h6 class="mb-4">Member Self Team
                     <p id="loadingContent" *ngIf="IsLoading">data is loading...
-                        <img class="loading" src="/loading.gif" />
+                        <img class="loading" src="./loading.gif" />
                     </p>
                 </h6>
                 <div class="table-responsive" style="max-height: 340px;">
@@ -116,7 +116,7 @@
                 <div class="col-sm-12 col-md-4 col-xl-4 mb-3">
                     <div class="bg-secondary rounded h-100 p-4 text-center">   
                         <button (click)="UpdateSubscribe(val.memberId)" style="margin-top: -10px;margin-bottom: 5px;" class="btn btn-success btn-sm pull-right">Approve Subscribtion
-                            <img  *ngIf="IsSubcribe()!=''" class="loading" src="/loading.gif" />
+                            <img  *ngIf="IsSubcribe()!=''" class="loading" src="./loading.gif" />
                         </button>
 
                             <a href="#" [download]="val.file">

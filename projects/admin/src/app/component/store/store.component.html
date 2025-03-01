@@ -81,7 +81,7 @@
                         <label>Pin Code</label>
                         <button (click)="addStore()" class="btn btn-primary btn-sm" [disabled]="form.invalid"
                             style="margin-left: 5px;">{{(store.autoId!=0)?'Update':'Submit'}}</button>
-                            <img *ngIf="isLoading" class="loading" src="/loading.gif" />
+                            <img *ngIf="isLoading" class="loading" src="./loading.gif" />
                     </div>
                     <div class="text-danger">
                         <span *ngIf="((pinCode.touched || pinCode.dirty)&& pinCode.errors?.['required'])">Pin Code is

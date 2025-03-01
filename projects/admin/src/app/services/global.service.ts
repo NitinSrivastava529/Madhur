@@ -8,8 +8,8 @@ import { constant } from '../model/constant';
 })
 export class GlobalService {
   // baseUrl:string='http://api.madhuraastha.com/';
-  baseUrl: string = window.location.origin.includes('localhost') ? 'https://localhost:7284/' : 'http://api.madhuraastha.com/';
-  rootUrl: string = window.location.origin.includes('localhost') ? 'https://localhost:4200/' : 'http://madhuraastha.com/';
+  baseUrl: string = window.location.origin.includes('localhost') ? 'https://localhost:7284/' :window.location.origin+'/MadhurApi/';
+  rootUrl: string = window.location.origin.includes('localhost') ? 'https://localhost:4200/' : window.location.origin;
   headers = new HttpHeaders()
     .set('Access-Control-Allow-Origin', '*')
     .set('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
@@ -36,16 +36,16 @@ export class GlobalService {
 
   public loadScript() {
     const jsArray = [
-      '/code.jquery.com/jquery-3.4.1.min.js',
-      '/cdn.jsdelivr.net/npm/bootstrap%405.0.0/dist/js/bootstrap.bundle.min.js',
-      '/lib/chart/chart.min.js',
-      '/lib/easing/easing.min.js',
-      '/lib/waypoints/waypoints.min.js',
-      '/lib/owlcarousel/owl.carousel.min.js',
-      '/lib/tempusdominus/js/moment.min.js',
-      '/lib/tempusdominus/js/moment-timezone.min.js',
-      '/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js',
-      '/js/main.js'
+      './code.jquery.com/jquery-3.4.1.min.js',
+      './cdn.jsdelivr.net/npm/bootstrap%405.0.0/dist/js/bootstrap.bundle.min.js',
+      './lib/chart/chart.min.js',
+      './lib/easing/easing.min.js',
+      './lib/waypoints/waypoints.min.js',
+      './lib/owlcarousel/owl.carousel.min.js',
+      './lib/tempusdominus/js/moment.min.js',
+      './lib/tempusdominus/js/moment-timezone.min.js',
+      './lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js',
+      './js/main.js'
     ];
     for (let i = 0; i < jsArray.length; i++) {
       let node = document.createElement('script');

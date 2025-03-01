@@ -7,8 +7,8 @@ import { CONSTANT } from '../Model/constant';
   providedIn: 'root'
 })
 export class GlobalService {
-  baseUrl: string = window.location.origin.includes('localhost') ? 'https://localhost:7284/' : 'http://api.madhuraastha.com/';
-  rootUrl: string = window.location.origin.includes('localhost') ? 'https://localhost:4200/' : 'http://madhuraastha.com/';
+  baseUrl: string = window.location.origin.includes('localhost') ? 'https://localhost:7284/' :window.location.origin+'/MadhurApi/'
+  rootUrl: string = window.location.origin.includes('localhost') ? 'https://localhost:4200/' : window.location.origin
   headers = new HttpHeaders()
     .set('Content-Type', 'application/json')
     .set('Accept', 'application/json')
