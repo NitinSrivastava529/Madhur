@@ -23,7 +23,10 @@ export class DashboardComponent implements OnInit {
   _http = inject(HttpClient);
   _global = inject(GlobalService)
   constructor(global: GlobalService) {
-    global.loadScript();
+   
+  }
+  ngOnInit(): void {
+    this._global.loadScript();
     this.memberId = localStorage.getItem('MemberId');
     var val = JSON.parse(localStorage.getItem('MemberInfo') || '');
     if (val.isSubscribe == 'Y') {
@@ -38,9 +41,6 @@ export class DashboardComponent implements OnInit {
         value: 'Account Verification Now !'
       })
     }
-  }
-  ngOnInit(): void {
-    this.GetBanner();
   }
   GetBanner() {
     this._http.get(this._global.baseUrl + 'api/Member/GetBanner').subscribe((res) => {

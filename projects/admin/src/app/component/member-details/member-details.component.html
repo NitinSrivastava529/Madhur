@@ -2,7 +2,7 @@
     <div class="row g-4">
         <div class="col-sm-12 col-xl-5">
             <div class="bg-secondary rounded h-100 p-4">
-                <h6 class="mb-4">Member Profile Details &nbsp;: &nbsp;                                                    
+                <h6 class="mb-4">Member Profile Details &nbsp;: &nbsp;                                                      
                     <ul style="padding: 0;" *ngIf="isLevel()">
                         <li class="levelShow">Level<span> {{LevelCount[0].level}}</span></li>
                         <li class="levelShow">Mem<span>{{LevelCount[0].member}}</span></li>
@@ -26,12 +26,12 @@
                         <tr>
                             <td>Member Name</td>
                             <td>:</td>
-                            <td>{{Info.memberName}}</td>
+                            <td><input type="text" [(ngModel)]="Info.memberName"/></td>
                         </tr>
                         <tr>
                             <td>Date of Birth</td>
                             <td>:</td>
-                            <td>{{Info.dob|date:'dd-mm-yyyy'}}</td>
+                            <td><input type="date" name="dob" #dob [(ngModel)]="Info.dob.split('T')[0]"  (change)="SetDob(dob.value)"/></td>                           
                         </tr>
                         <tr>
                             <td>Mobile No</td>
@@ -46,7 +46,7 @@
                         <tr>
                             <td>Address</td>
                             <td>:</td>
-                            <td>{{Info.address}}</td>
+                            <td><input type="text" [(ngModel)]="Info.address"/></td>
                         </tr>
                         <tr>
                             <td>State</td>
@@ -61,19 +61,20 @@
                         <tr>
                             <td>Pin</td>
                             <td>:</td>
-                            <td>{{Info.pinCode}}</td>
+                            <td><input type="text" [(ngModel)]="Info.pinCode"/></td>
                         </tr>
                         <tr>
                             <td>Nominee</td>
                             <td>:</td>
-                            <td>{{Info.nominee}}</td>
+                            <td><input type="text" [(ngModel)]="Info.nominee"/></td>
                         </tr>
                         <tr>
                             <td>Nominee Relation</td>
                             <td>:</td>
-                            <td>{{Info.relationWithNominee}}</td>
+                            <td><input type="text" [(ngModel)]="Info.relationWithNominee"/></td>
                         </tr>
                     </table>
+                    <button (click)="UpdateData()"  id="btnUpdate" class="btn btn-warning btn-sm pull-right">Update</button> 
                 </div>
             </div>
         </div>

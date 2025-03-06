@@ -6,11 +6,12 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { LayoutComponent } from "../layout/layout.component";
 import { constant } from '../../model/constant';
 import { DomSanitizer } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-member-details',
   standalone: true,
-  imports: [CommonModule, LayoutComponent, RouterLink],
+  imports: [CommonModule, FormsModule,LayoutComponent, RouterLink],
   templateUrl: './member-details.component.html',
   styleUrl: './member-details.component.css',
   changeDetection:ChangeDetectionStrategy.Default
@@ -71,6 +72,26 @@ export class MemberDetailsComponent implements OnInit {
       this.IsLoading = false;
       this.totalInfo();
     })
+  }
+  SetDob(dob:string){     
+     this.Info.dob=dob;
+  }
+  UpdateData(){    
+    var obj={
+      'MemberId':this.memberId,
+      'MemberName':this.Info.memberName,
+      'dob':this.Info.dob,
+      'Address':this.Info.address,
+      'PinCode':this.Info.pinCode,
+      'Nominee':this.Info.nominee,
+      'RelationWithNominee':this.Info.relationWithNominee,
+    }  
+    this.global.put("api/Member/UpdateMemberByAdmin/", obj).subscribe(
+      (res :any)=> {        
+        this.IsSubcribe.set('')
+        alert('Successfully Updated')       
+      }
+    )
   }
   UpdateSubscribe(memberId: string) {
     this.IsSubcribe.set('Updating..')

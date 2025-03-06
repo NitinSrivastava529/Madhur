@@ -35,7 +35,7 @@ export class RegistrationComponent implements OnInit {
     aadharNo: "",
     address: "",
     state: "",
-    city: "Select",
+    city: "-",
     pinCode: "",
     nominee: "",
     relationWithNominee: "Select",
@@ -158,10 +158,10 @@ export class RegistrationComponent implements OnInit {
       alert('Please Fill State')
       return false
     }
-    if (this.obj.city == 'Select') {
-      alert('Please Fill City')
-      return false
-    }
+    // if (this.obj.city == 'Select') {
+    //   alert('Please Fill City')
+    //   return false
+    // }
     if (this.obj.pinCode == '') {
       alert('Please Fill Pin Code')
       return false

@@ -15,7 +15,7 @@ export class LoginComponent {
   IsLoading: boolean = false;
   obj: any = {
     url: 'api/auth/login',
-    memberId: 'MEM0000001',
+    memberId: 'MAC0000000001',
     password: ''
   }
   router = inject(Router);

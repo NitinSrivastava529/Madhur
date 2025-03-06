@@ -6,7 +6,11 @@ table td {
     color: rgb(43, 238, 43);
     margin-left: 10px;
 }
-
+input[type=text],input[type=date] {
+    color: #71c640;
+    height: 20px;
+    border: none;
+}
 .bg-success {
     color: rgb(43, 238, 43);
 }
@@ -49,4 +53,11 @@ ul li span:hover {
     width: 100%;    
     margin-left: 10px;
 
+}
+#btnUpdate {
+    margin-top: 7px;
+    margin-bottom: 0px;
+    height: 35px;
+    line-height: 0;
+    float: right;
 }

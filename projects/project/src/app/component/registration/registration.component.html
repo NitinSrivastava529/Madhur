@@ -9,7 +9,7 @@
                         Madhur Aastha Company
                     </div>
                     <p class="text-center">Referral Id : {{obj.refId}}</p>
-                    <p class="text-center">{{referralName}}</p>
+                    <p class="text-center hide">{{referralName}}</p>
                 </div>
             </div>
             <div class="row">
@@ -43,7 +43,7 @@
                                 </option>
                              </select>                                                         
                         </div>
-                        <input name="aadharNo" [(ngModel)]="obj.aadharNo" type="text" class="validate"
+                        <input name="aadharNo" [(ngModel)]="obj.aadharNo" type="text" class="validate hide"
                             placeholder="Aadhar No">
                         <input name="address" [(ngModel)]="obj.address" type="text" class="validate"
                             placeholder="Enter Full Address">
@@ -53,7 +53,7 @@
                                 <option [value]="item.state_code+'|'+item.state_name">{{item.state_name}}</option>
                             </ng-container>
                         </select>
-                        <select name="city" [(ngModel)]="obj.city">
+                        <select name="city" [(ngModel)]="obj.city" class="hide">
                             <option value="Select" selected>Select City</option>
                             <ng-container *ngFor="let item of cityList">
                                 <option [value]="item.distt_name">{{item.distt_name}}</option>
@@ -90,6 +90,9 @@
                         </label>
                         <p class="text-center">
                             <button *ngIf="!IsLoading" class="btn" (click)="Register()">SIGN UP NOW</button>
+                        </p>
+                        <p class="text-center">
+                            Already Registered&nbsp;<a href="/" style="color: blue;font-weight: bold;">Go to Login Page</a>
                         </p>
                         <img *ngIf="IsLoading" src="/images/loading.gif" />
                     </div>
