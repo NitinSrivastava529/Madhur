@@ -45,9 +45,9 @@
                         </div>
                         <input name="aadharNo" [(ngModel)]="obj.aadharNo" type="text" class="validate hide"
                             placeholder="Aadhar No">
-                        <input name="address" [(ngModel)]="obj.address" type="text" class="validate"
+                        <input name="address" [(ngModel)]="obj.address" type="text" class="validate hide"
                             placeholder="Enter Full Address">
-                        <select name="state" [(ngModel)]="selectedState" #state (change)="GetCity(state.value)">
+                        <select name="state" class="hide" [(ngModel)]="selectedState" #state (change)="GetCity(state.value)">
                             <option value="Select" selected>Select State</option>
                             <ng-container *ngFor="let item of stateList">
                                 <option [value]="item.state_code+'|'+item.state_name">{{item.state_name}}</option>
@@ -59,11 +59,11 @@
                                 <option [value]="item.distt_name">{{item.distt_name}}</option>
                             </ng-container>
                         </select>
-                        <input name="PinCode" [(ngModel)]="obj.pinCode" type="text" class="validate"
+                        <input name="PinCode" [(ngModel)]="obj.pinCode" type="text" class="validate hide"
                             placeholder="Pin Code">
-                        <input name="nominee" [(ngModel)]="obj.nominee" type="text" class="validate"
+                        <input name="nominee" [(ngModel)]="obj.nominee" type="text" class="validate hide"
                             placeholder="Nominee Name">
-                        <select name="relationWithNominee" [(ngModel)]="obj.relationWithNominee">
+                        <select name="relationWithNominee" [(ngModel)]="obj.relationWithNominee" class="hide">
                             <option selected="" value="Select">Select Relation With Nominee</option>
                             <option value="son">Son</option>
                             <option value="brother">Brother</option>
@@ -78,7 +78,7 @@
                         </select>
                         <input name="password" [(ngModel)]="obj.password" type="text" class="validate"
                             placeholder="Password">
-                        <input name="confirmPassword" [(ngModel)]="ConfirmPassword" type="text" class="validate"
+                        <input name="confirmPassword" [(ngModel)]="ConfirmPassword" type="text" class="validate hide"
                             placeholder="Confirm Password">
                         <label class="checkbox">
                             <input type="checkbox" name="tc" [(ngModel)]="IsReceived" class="validate" />&nbsp;Agarbatti Packet

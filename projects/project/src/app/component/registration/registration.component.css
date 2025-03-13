@@ -8,6 +8,10 @@ input{
     height: 40px !important;
     margin-top: -7px !important;
 }
+::placeholder {
+    color: #727070;
+    opacity: 1; /* Firefox */
+  }
 input[type=date]{
     padding:0 10px;
 }

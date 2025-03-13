@@ -10,6 +10,7 @@ input[type=text],input[type=date] {
     color: #71c640;
     height: 20px;
     border: none;
+    width: 100%;
 }
 .bg-success {
     color: rgb(43, 238, 43);

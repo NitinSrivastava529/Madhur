@@ -34,9 +34,9 @@
                             </thead>
                             <tbody>
                                 <ng-container *ngFor="let val of memberInfo;let i=index">
-                                    <tr *ngIf="tempGroup(val.refId)" style="background: #151414;">
+                                    <!-- <tr *ngIf="tempGroup(val.refId)" style="background: #151414;">
                                         <td colspan="8">Referral : {{val.refId}}</td>
-                                    </tr>
+                                    </tr> -->
                                     <tr>
                                         <td>{{(10*(filterObj.pageNo-1))+(i+1)}}</td>
                                         <td>{{val.regPin}}</td>

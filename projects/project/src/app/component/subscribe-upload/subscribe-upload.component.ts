@@ -54,10 +54,10 @@ export class SubscribeUploadComponent implements OnInit {
   }
   onChange(event: any) {
     var size = (event.target.files[0].size / 1024);
-    if (size > 200) {
-      alert('upload 100 kb file only.')
-      return
-    }
+    // if (size > 200) {
+    //   alert('upload 100 kb file only.')
+    //   return
+    // }
     this.isFile=true;
     this.uploadData.file = event.target.files[0]
   }

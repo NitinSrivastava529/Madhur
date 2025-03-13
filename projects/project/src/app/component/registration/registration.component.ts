@@ -33,12 +33,12 @@ export class RegistrationComponent implements OnInit {
     mobileNo: "",
     dob: "",
     aadharNo: "",
-    address: "",
-    state: "",
+    address: "-",
+    state: "-",
     city: "-",
-    pinCode: "",
-    nominee: "",
-    relationWithNominee: "Select",
+    pinCode: "123456",
+    nominee: "-",
+    relationWithNominee: "-",
     isActive: "Y",
     creationDate: new Date()
   }
@@ -63,7 +63,7 @@ export class RegistrationComponent implements OnInit {
   }
   ngOnInit(): void {
     this.GetReferral();
-    this.GetState()
+    //this.GetState()
     this.dayList.push('DD')
     this.monthList.push('MM')
     this.yearList.push('YYYY')
@@ -133,16 +133,17 @@ export class RegistrationComponent implements OnInit {
       alert('Please Fill 10 digit Mobile No')
       return false
     }
-    var dob=parseInt(this.dob_year)+parseInt(this.dob_month)+parseInt(this.dob_day);
-    var today=this.todayDate.getFullYear()+this.todayDate.getMonth()+1+this.todayDate.getDate();
+    // var dob=parseInt(this.dob_year)+parseInt(this.dob_month)+parseInt(this.dob_day);
+    // var today=this.todayDate.getFullYear()+this.todayDate.getMonth()+1+this.todayDate.getDate();
 
     if (this.obj.dob == '') {
       alert('Please Fill DOB')
       return false
-    } else if((today-dob)<18){
-      alert('your age is '+(today-dob)+'. not allowed !')
-      return false
-    }
+    } 
+    // else if((today-dob)<18){
+    //   alert('your age is '+(today-dob)+'. not allowed !')
+    //   return false
+    // }
     // if (this.obj.aadharNo == '') {
     //   alert('Please Fill Aadhar No')
     //   return false
@@ -150,40 +151,41 @@ export class RegistrationComponent implements OnInit {
     //   alert('Please Fill 12 digit Aadhar No')
     //   return false
     // }
-    if (this.obj.address == '') {
-      alert('Please Fill Full Address')
-      return false
-    }
-    if (this.selectedState == 'Select') {
-      alert('Please Fill State')
-      return false
-    }
+    // if (this.obj.address == '') {
+    //   alert('Please Fill Full Address')
+    //   return false
+    // }
+    // if (this.selectedState == 'Select') {
+    //   alert('Please Fill State')
+    //   return false
+    // }
     // if (this.obj.city == 'Select') {
     //   alert('Please Fill City')
     //   return false
     // }
-    if (this.obj.pinCode == '') {
-      alert('Please Fill Pin Code')
-      return false
-    } else if (this.obj.pinCode.length != 6) {
-      alert('Please Fill 6 digit Pin Code')
-      return false
-    }
-    if (this.obj.nominee == '') {
-      alert('Please Fill Nominee Name')
-      return false
-    }
-    if (this.obj.relationWithNominee == '') {
-      alert('Please Fill Relation With Nominee')
-      return false
-    }
+    // if (this.obj.pinCode == '') {
+    //   alert('Please Fill Pin Code')
+    //   return false
+    // } else if (this.obj.pinCode.length != 6) {
+    //   alert('Please Fill 6 digit Pin Code')
+    //   return false
+    // }
+    // if (this.obj.nominee == '') {
+    //   alert('Please Fill Nominee Name')
+    //   return false
+    // }
+    // if (this.obj.relationWithNominee == '') {
+    //   alert('Please Fill Relation With Nominee')
+    //   return false
+    // }
     if (this.obj.password == '') {
       alert('Please Fill Password')
       return false
-    } else if (this.obj.password != this.ConfirmPassword) {
-      alert('Confirm Password not Matched')
-      return false
-    }
+    } 
+    // else if (this.obj.password != this.ConfirmPassword) {
+    //   alert('Confirm Password not Matched')
+    //   return false
+    // }
     if (!this.IsReceived) {
       alert('Please Check Package Received?')
       return false
