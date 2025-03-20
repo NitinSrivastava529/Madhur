@@ -12,7 +12,7 @@
                 <div class="col s12 text-center">
                 <label class="info">कंपनी  की  लेटेस्ट डिटेल प्राप्त करने के लिए  youtube चैनल को 
                     Subscribe करें और स्क्रीनशॉट अपलोड करें जिससे आपका account verification  हो जाएगा</label>
-                    <a class="btn" href="https://www.youtube.com/@madhuraasthacompany" style="margin-bottom: 10px;background-color: #3276b3;">Click to Subscribe</a>                         
+                    <a class="btn" href="https://www.youtube.com/@madhuraasthacompany" style="margin-bottom: 30px;background-color: #3276b3;">Click to Subscribe</a>                         
                     </div>                           
                     <!-- <ng-container *ngFor="let val of videoList();let i=index">
                         <iframe width="100%" height="315" [src]="getVideoUrl(val.file)">
@@ -20,18 +20,18 @@
                     </ng-container> -->
                 <div class="col s12 text-center">
                   
-                    <div style="display: flex;align-items:baseline;">            
-                        <input type="file" name="file" (change)="onChange($event)" size="10kb" accept=".jpeg,.png,.jpg"
+                    <div style="display: none;align-items:baseline;">            
+                        <input type="file"  name="file" (change)="onChange($event)" size="10kb" accept=".jpeg,.png,.jpg"
                             style="float: right;" />
                     </div>
-                    <button (click)="upload()" class="btn waves-effect waves-light">Upload</button>
+                    Subscribe Completed : <b (click)="upload()" class="btn-success btn" style="background: green;">Yes</b> Or <b class="btn-success btn">No</b>
                 </div>
             </div>
             <div class="data">
                 <label *ngIf="response().length>0" class="response">{{response()}}</label>
                 <label *ngIf="response().length==0" class="response">Note : Double Click or Tap on Image to Delete.</label>
                 <ng-container *ngFor="let val of kycInfo;let i=index">
-                    <img *ngIf="val.type=='subscribe'" [src]="getUrl(val.file)" (dblclick)="Delete(val.autoId)" />
+                    <img *ngIf="val.type=='subscribe'" src="./images/subscribe.png" (dblclick)="Delete(val.autoId)" />
                 </ng-container>
             </div>
         </div>

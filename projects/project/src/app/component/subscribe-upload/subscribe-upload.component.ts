@@ -19,6 +19,7 @@ export class SubscribeUploadComponent implements OnInit {
   response = signal('No Document Uploaded.')
   isFile:boolean=false;
   isLoading: boolean = false;
+  images: string = "";
   uploadData: any = {
     'memberId': localStorage.getItem('MemberId'),
     'file': File,
@@ -31,6 +32,7 @@ export class SubscribeUploadComponent implements OnInit {
   ngOnInit(): void {
     this.GetKyc()
     this.GetVideo()
+    this.images='../images/subscribe.png'
   }
   getVideoUrl(code: string) {
     return this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + code);
@@ -62,15 +64,15 @@ export class SubscribeUploadComponent implements OnInit {
     this.uploadData.file = event.target.files[0]
   }
   upload() {  
-    if(!this.isFile){
-      alert('Please Select File')
-      return
-    }
+    // if(!this.isFile){
+    //   alert('Please Select File')
+    //   return
+    // }
     this.response.set('Uploading..')
     var formData = new FormData();
     formData.append('memberId', this.uploadData.memberId);
-    formData.append('file', this.uploadData.file);
-    formData.append('type', this.uploadData.type);
+    formData.append('file', '-');
+    formData.append('type', 'subscribe');
     this.global.UploadFile('api/member/AddKyc', formData).subscribe((res) => {
       this.response.set('Uploaded Successfully.')
       this.GetKyc();

@@ -16,7 +16,7 @@
                         <tr>
                             <td>E-Pin</td>
                             <td>:</td>
-                            <td>{{Info.regPin}}</td>
+                            <td>{{Info.regPin}},<b>Password : </b>{{Info.password}}</td>
                         </tr>
                         <tr>
                             <td>Member Id</td>
@@ -36,7 +36,7 @@
                         <tr>
                             <td>Mobile No</td>
                             <td>:</td>
-                            <td>{{Info.mobileNo}}, <b>Password : </b>{{Info.password}}</td>
+                            <td><input type="text" [(ngModel)]="Info.mobileNo"/></td>                           
                         </tr>
                         <tr>
                             <td>Aadhar No</td>
@@ -121,7 +121,7 @@
                         </button>
 
                             <a href="#" [download]="val.file">
-                                <img [src]="getUrl(val.file)" class="kyc" />
+                                <img src="./img/subscribe.png" class="kyc" />
                             </a>      
                              
                     </div>

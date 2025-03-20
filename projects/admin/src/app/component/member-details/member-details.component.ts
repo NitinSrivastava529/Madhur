@@ -81,6 +81,7 @@ export class MemberDetailsComponent implements OnInit {
       'MemberId':this.memberId,
       'MemberName':this.Info.memberName,
       'dob':this.Info.dob,
+      'MobileNo':this.Info.mobileNo,
       'Address':this.Info.address,
       'PinCode':this.Info.pinCode,
       'Nominee':this.Info.nominee,
