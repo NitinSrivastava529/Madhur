@@ -18,6 +18,7 @@ export class SubscribeUploadComponent implements OnInit {
     videoList:WritableSignal<CompanyPlan[]>=signal<CompanyPlan[]>([]);
   response = signal('No Document Uploaded.')
   isFile:boolean=false;
+  IsCheck=signal(false);
   isLoading: boolean = false;
   images: string = "";
   uploadData: any = {
@@ -63,11 +64,20 @@ export class SubscribeUploadComponent implements OnInit {
     this.isFile=true;
     this.uploadData.file = event.target.files[0]
   }
-  upload() {  
+  upload(event:Event) {  
+    let check=(event.target as HTMLInputElement).checked;    
+    this.IsCheck.set(check)
+  }
+    Submit() {  
     // if(!this.isFile){
     //   alert('Please Select File')
     //   return
     // }
+        
+    if(!this.IsCheck()) {
+      alert('Please Tick Checkbox')
+      return
+    }
     this.response.set('Uploading..')
     var formData = new FormData();
     formData.append('memberId', this.uploadData.memberId);
