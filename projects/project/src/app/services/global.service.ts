@@ -20,6 +20,9 @@ export class GlobalService {
   UploadFile(url: string, data: any): Observable<any> {
     return this.http.post(CONSTANT.API_URL + url, data, { responseType: 'text' });
   }
+   put(url: string, data: any): Observable<any> {
+      return this.http.put(CONSTANT.API_URL + url, data, { headers: this.headers });
+    }
   get(data: any): Observable<any> {
     return this.http.get(this.baseUrl + data.url, data);
   }

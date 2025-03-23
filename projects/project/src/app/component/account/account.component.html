@@ -1,32 +1,84 @@
 <div id="page-content">
-    <div class="section section_team">
-      <div class="container">
-        <div class="row row-title ">
-          <div class="col s12">
-            <div class="section-title row-title-team">
-              <span class="theme-secondary-color">My</span> Account
-            </div>
+  <div class="section section_team">
+    <div class="container">
+      <div class="row row-title ">
+        <div class="col s12">
+          <div class="section-title row-title-team">
+            <span class="theme-secondary-color">My</span> Account
           </div>
-        </div>        
-        <div class="row row-team1">
-          <div class="col s12">
-            <div class="wrap-team">
-              <div class="wt-left">
-                <div class="wt-photo">
-                  <img src="images/profile.png" alt="profile">
-                </div>
-              </div>
-              <div class="wt-right">
-                <div class="wtr-name">Name : {{memberInfo.memberName}}</div>
-                <div class="wtr-title">member Id : {{memberInfo.memberId}}</div>
-                <div class="wtr-title">Mobile No : {{memberInfo.mobileNo}}</div>
-                <div class="wtr-title">Aadhar No : {{memberInfo.aadharNo}}</div>            
-                <div class="wtr-title">Address : {{memberInfo.address}},{{memberInfo.City}},{{memberInfo.state}},{{memberInfo.pinCode}}</div>               
-              </div>
-              <div class="clear"></div>
-            </div>
-          </div>
-        </div>  
         </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <div class="info">
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <th>member Id</th>
+                  <th>:</th>
+                  <td class="text-danger">{{memberInfo.memberId}}</td>
+                </tr>
+                <tr>
+                  <th>Name</th>
+                  <th>:</th>
+                  <td>{{memberInfo.memberName}}</td>
+                </tr>
+                <tr>
+                  <th>Mobile No </th>
+                  <th>:</th>
+                  <td>{{memberInfo.mobileNo}}</td>
+                </tr>
+                <tr>
+                  <th>DOB </th>
+                  <th>:</th>
+                  <td><input type="date" name="dob" #dob [(ngModel)]="memberInfo.dob.split('T')[0]"
+                      (change)="SetDob(dob.value)" /></td>
+                </tr>
+                <tr>
+                  <th>Aadhar No.</th>
+                  <th>:</th>
+                  <td><input type="text" class="form-control" [(ngModel)]="memberInfo.aadharNo" /></td>
+                </tr>
+                <tr>
+                  <th>Pin</th>
+                  <th>:</th>
+                  <td><input type="text" [(ngModel)]="memberInfo.pinCode" /></td>
+                </tr>
+                <tr>
+                  <th>State</th>
+                  <th>:</th>
+                  <td><input type="text" [(ngModel)]="memberInfo.state" /></td>
+                </tr>
+                <tr>
+                  <th>City</th>
+                  <th>:</th>
+                  <td><input type="text" [(ngModel)]="memberInfo.city" /></td>
+                </tr>
+                <tr>
+                  <th>Address</th>
+                  <th>:</th>
+                  <td><input type="text" [(ngModel)]="memberInfo.address" /></td>
+                </tr>
+                <tr>
+                  <th>Nominee</th>
+                  <th>:</th>
+                  <td><input type="text" [(ngModel)]="memberInfo.nominee" /></td>
+                </tr>
+                <tr>
+                  <th>Nominee Relation</th>
+                  <th>:</th>
+                  <td><input type="text" [(ngModel)]="memberInfo.relationWithNominee" /></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col s12 btnCMD">
+          <button (click)="UpdateData()" *ngIf="!IsUpdating()" id="btnUpdate" class="btn btn-warning btn-sm pull-right">Update
+            Profile</button>
+            <label class="updating" *ngIf="IsUpdating()">Updating.. <img src="./images/loading.gif" /> </label>
+        </div>
+      </div>
     </div>
   </div>
+</div>
