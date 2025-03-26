@@ -38,7 +38,7 @@
                                   <td>{{i+1}}</td>
                                   <td>{{key.memberId}}</td>
                                   <td>{{key.memberName}}</td>     
-                                  <td>{{key.mobileNo}}</td>                                                                                                     
+                                  <td>{{(key.refId==loginId())?key.mobileNo:'-'}}</td>                                                                                                     
                                   <td class="text-danger">{{key.refId}}</td>                                                                                                                                                                                                                                     
                               </tr>
                           </tbody>

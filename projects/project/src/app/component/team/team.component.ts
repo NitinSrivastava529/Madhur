@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { GlobalService } from '../../services/global.service';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 export class TeamComponent {
   levelInfo: any
   allLevelInfo: any
+  loginId=signal('');
   LevelCount: any
   totalMem:number=0;
   totalPur:number=0;
@@ -52,6 +53,7 @@ export class TeamComponent {
     this.http.get(this.global.baseUrl + 'api/Member/AllMember?MemberId=' + localStorage.getItem('MemberId')).subscribe(res => {
       this.allLevelInfo = res;
       this.levelInfo = res;           
+      this.loginId.set(localStorage.getItem('MemberId')||'')
     })
   }
 }
