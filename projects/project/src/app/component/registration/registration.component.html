@@ -3,12 +3,12 @@
         <div class="container">
             <div class="row">
                 <div class="col s12 text-center">
+                    <label class="payNow">Pay Now for E-Pin</label><br>
                     <img src="/images/scanme.jpeg?v1.2" class="register" />
                     <!-- satish.saini010@oksbi -->
                     <!-- <img src="https://static.vecteezy.com/system/resources/thumbnails/024/568/140/small_2x/register-now-with-speech-bubble-and-ribbon-modern-design-template-for-icon-sign-logo-web-label-button-banner-registration-join-illustration-free-vector.jpg"/> -->
-                    <br><label style="color: #6f0088;font-size: 13px;margin-bottom: 0;">UPI No : 9829787821</label>
-                    <a href="#" class="btn btn-success" style="pointer-events: none;margin-top: 10px;background: #6f0088;    width: max-content;"><i class="fas fa-credit-card">&nbsp;</i>Pay Now for E-Pin</a>
-                    <a href="https://wa.me/919887606832" style="margin-top: 10px;background: #00aa45;" class="btn btn-success"><i class="fas fa-mobile-alt">&nbsp;</i>Send Screenshot</a>
+                    <br><label style="color: #6f0088;font-size: 13px;margin-bottom: 0;">UPI No : 9829787821</label>                    
+                    <a href="https://wa.me/919887606832" class="btn btn-success sendScreen" ><img style="height: 25px;" src="./images/whatsApp.png"/> Send Screenshot</a>
                     <div class="section-title">
                         Madhur Aastha Company
                     </div>
@@ -20,8 +20,13 @@
             <div class="row">
                 <div class="row">
                     <div class="input-field col s12 m6 l4 offset-m3 offset-l4">
-                        <input name="pin" [(ngModel)]="obj.regPin" type="text" class="validate"
-                            placeholder="E Pin">
+                        <div style="display: flex;">
+                            <input name="pin" [(ngModel)]="obj.regPin" type="text" class="validate"
+                            placeholder="E Pin">&nbsp;
+                            <input name="storeId" [(ngModel)]="obj.storeId" type="text" class="validate"
+                            placeholder="Mini Store Id">
+                        </div>
+                       
                         <input name="referralId" [(ngModel)]="obj.refId" type="hidden" disabled="" class="validate"
                             placeholder="Referral Id">
                         <input name="referralName" [(ngModel)]="referralName" type="hidden" disabled="" class="validate"

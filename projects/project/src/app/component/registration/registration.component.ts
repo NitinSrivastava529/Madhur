@@ -27,6 +27,7 @@ export class RegistrationComponent implements OnInit {
   obj: any = {
     url: 'api/Auth/AddMember',
     regPin: "",
+    storeId: "",
     refId: "",
     memberName: "",
     password: "",
@@ -116,6 +117,10 @@ export class RegistrationComponent implements OnInit {
   validate() {
     if (this.obj.regPin == '') {
       alert('Please Fill E Pin Number')
+      return false
+    }
+    if (this.obj.storeId == '') {
+      alert('Please Fill Store Id')
       return false
     }
     if (this.obj.refId == '') {

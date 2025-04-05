@@ -34,6 +34,20 @@ select {
     margin-bottom: 21px !important;
     border-radius: 6px;
 }
+.sendScreen {
+    width: max-content;
+    margin-left: 47px;
+    display: flex;
+    margin-top: 10px;
+    background: #00aa45;
+    align-items: center;
+    gap: 4px;
+}
+.payNow{
+    font-weight: bolder;
+    color: #F44336;
+    font-size: 19px;
+}
 select option{
     font-size: 12px;
     padding: 0;

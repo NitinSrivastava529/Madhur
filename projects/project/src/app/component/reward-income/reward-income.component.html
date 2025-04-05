@@ -10,35 +10,37 @@
       </div>
       <div class="row">
         <div class="col s12">
-          <div class="info">       
-            <label style="white-space: pre;">Re-Purchase E-Pin</label>
-            <input type="text" name="nPassword" [(ngModel)]="RegKey" placeholder="Re-Purchase E-Pin" />
+          <div class="info text-center">
+            <div class="flex">
+              <input type="text" name="npin" [(ngModel)]="RegKey" placeholder="Re-Purchase E-Pin" />&nbsp;&nbsp;
+              <input type="text" name="storeId" [(ngModel)]="StoreId" placeholder="Enter Store Id" />
+            </div>
             <button *ngIf="!IsLoading" class="btn" (click)="Repurchase()">Submit</button>
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="col s12">                        
-            <div class="info text-center">                       
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Repurchase Id</th>
-                            <th>Repurchase Name</th>                                                                                                                    
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let key of repurchaseInfo;let i=index">
-                            <td>{{i+1}}</td>
-                            <td>{{key.memberId}}</td>
-                            <td>{{key.memberName}}</td>                                                                                                                                                                                                                                                      
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="col s12">
+          <div class="info text-center">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Repurchase Id</th>
+                  <th>Repurchase Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let key of repurchaseInfo;let i=index">
+                  <td>{{i+1}}</td>
+                  <td>{{key.memberId}}</td>
+                  <td>{{key.memberName}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-    </div>
+      </div>
     </div>
   </div>
 </div>

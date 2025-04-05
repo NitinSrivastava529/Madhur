@@ -16,6 +16,7 @@ import { StoreComponent } from './component/store/store.component';
 import { OfficialPlanComponent } from './component/official-plan/official-plan.component';
 import { DeactiveMemberComponent } from './component/deactive-member/deactive-member.component';
 import { ApproveSubscribeComponent } from './component/approve-subscribe/approve-subscribe.component';
+import { StoreKeyComponent } from './component/store-key/store-key.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -33,7 +34,8 @@ export const routes: Routes = [
             { path: 'terms-condition', component:TermsConditionComponent,canActivate:[authGuard] },            
             { path: 'reward-distributor', component: RewardDistributorComponent,canActivate:[authGuard] },
             { path: 'approve-subscribe', component: ApproveSubscribeComponent,canActivate:[authGuard] },
-            { path: 'store', component: StoreComponent,canActivate:[authGuard] }                     
+            { path: 'store', component: StoreComponent,canActivate:[authGuard] },             
+            { path: 'store-key', component: StoreKeyComponent,canActivate:[authGuard] }                     
         ]
     },
     { path: '**', component: NotFoundComponent }

@@ -18,6 +18,7 @@ export class RewardIncomeComponent implements OnInit {
   IsLoading:boolean=false;
   repurchaseInfo: any =[];
   RegKey: string = "";
+  StoreId: string = "";
   _route = inject(Router);
   _http = inject(HttpClient);
   _global = inject(GlobalService);
@@ -30,9 +31,13 @@ export class RewardIncomeComponent implements OnInit {
       alert('Please Enter Key');
       return;
     };
+    if (this.StoreId.length < 5) {
+      alert('Please Enter StoreId');
+      return;
+    };
     this.IsLoading=true;
     var obj = {
-      'url': 'api/Member/Repurchase?memberId=' + localStorage.getItem('MemberId') + '&RegKey=' + this.RegKey,
+      'url': 'api/Member/Repurchase?memberId=' + localStorage.getItem('MemberId') + '&RegKey=' + this.RegKey+ '&StoreId=' + this.StoreId,
     }
     this._global.post(obj).subscribe((res) => {
       alert(res.message);
