@@ -14,6 +14,7 @@ import { constant } from '../../model/constant';
 })
 export class StoreKeyComponent {
   IsLoading: boolean = false;
+  IsLoading2: boolean = false;
   StoreId: string = "";
   StorekeyInfo: any;
   global = inject(GlobalService);
@@ -28,6 +29,23 @@ export class StoreKeyComponent {
       console.warn(res)
       this.StorekeyInfo = res;
       this.IsLoading = false;
+    })
+  }
+  Reset() {
+    if (!confirm('are you sure?')) {
+      return
+    }
+    if (this.StoreId.length < 5) {
+      alert('Please Enter StoreId')
+      return
+    }
+    this.IsLoading2 = true;
+    this.http.delete(constant.API_URL + 'api/member/ResetStorekeyAdmin?storeId=' + this.StoreId).subscribe((res: any) => {
+      if(res.result){
+        alert(res.message)
+        this.GetDetails()
+      }     
+      this.IsLoading2 = false;
     })
   }
 }
