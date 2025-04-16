@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
   _http = inject(HttpClient);
   _global = inject(GlobalService)
   constructor(global: GlobalService) {
-   
+
   }
   ngOnInit(): void {
     this._global.loadScript();
@@ -35,12 +35,17 @@ export class DashboardComponent implements OnInit {
         value: 'Account Verified !'
       })
     }
-    else{
+    else {
       this.verified.set({
         class: 'Subscribe',
         value: 'Account Verification Now !'
       })
     }
+  }
+  OpenModal() {
+    if (this.verified().class == 'Subscribe')
+      alert(`अपना Account verification  करने के लिए आप को जल्द से जल्द अपने reference  लिंक से 10 लोगों joining  करवाना अनिवार्य है  नहीं तो आप की जॉइनिंग के एक महीने बाद account deactivate हो सकता है उसका जिम्मेदार आप खुद रहेंगे धन्यवाद
+अधिक जानकारी के लिए संपर्क करें 9829787821`)
   }
   GetBanner() {
     this._http.get(this._global.baseUrl + 'api/Member/GetBanner').subscribe((res) => {

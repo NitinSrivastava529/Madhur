@@ -122,7 +122,8 @@
 <div class="section promo">
     <div class="container">
         <div class="col s12">           
-            <label [routerLink]="verified().class=='Subscribe'?'/subscribe-upload':'/dashboard'" [class]="verified().class"><i *ngIf="verified().class=='Subscribed'" class="fa fa-check-circle">&nbsp;</i>{{verified().value}}</label>           
+            <!-- <label [routerLink]="verified().class=='Subscribe'?'/subscribe-upload':'/dashboard'" [class]="verified().class"><i *ngIf="verified().class=='Subscribed'" class="fa fa-check-circle">&nbsp;</i>{{verified().value}}</label>            -->            
+            <label (click)="OpenModal()" [class]="verified().class"><i *ngIf="verified().class=='Subscribed'" class="fa fa-check-circle">&nbsp;</i>{{verified().value}}</label>           
         </div>
     </div>
 </div>

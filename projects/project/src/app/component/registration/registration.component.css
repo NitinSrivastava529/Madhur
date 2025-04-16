@@ -35,8 +35,9 @@ select {
     border-radius: 6px;
 }
 .sendScreen {
+    padding: 5px 10px;
     width: max-content;
-    margin-left: 47px;
+    margin-left: 0;
     display: flex;
     margin-top: 10px;
     background: #00aa45;
