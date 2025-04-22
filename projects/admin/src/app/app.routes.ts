@@ -17,6 +17,7 @@ import { OfficialPlanComponent } from './component/official-plan/official-plan.c
 import { DeactiveMemberComponent } from './component/deactive-member/deactive-member.component';
 import { ApproveSubscribeComponent } from './component/approve-subscribe/approve-subscribe.component';
 import { StoreKeyComponent } from './component/store-key/store-key.component';
+import { RewardMemberComponent } from './component/reward-member/reward-member.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -35,6 +36,7 @@ export const routes: Routes = [
             { path: 'reward-distributor', component: RewardDistributorComponent,canActivate:[authGuard] },
             { path: 'approve-subscribe', component: ApproveSubscribeComponent,canActivate:[authGuard] },
             { path: 'store', component: StoreComponent,canActivate:[authGuard] },             
+            { path: 'reward-member', component: RewardMemberComponent,canActivate:[authGuard] },             
             { path: 'store-key', component: StoreKeyComponent,canActivate:[authGuard] }                     
         ]
     },
