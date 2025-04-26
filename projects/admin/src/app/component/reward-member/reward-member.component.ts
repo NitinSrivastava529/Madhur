@@ -22,7 +22,7 @@ export class RewardMemberComponent {
   http = inject(HttpClient)
   GetDetails() {
     this.IsLoading = true;
-    this.http.get(constant.API_URL + 'api/member/RewardMemberTotal?from=' + this.dto.from + '&to=' + this.dto.to + 'total=' + this.dto.total).subscribe((res: any) => {
+    this.http.get(constant.API_URL + 'api/member/RewardMemberTotal?fromDate=' + this.dto.from + '&toDate=' + this.dto.to + '&total=' + this.dto.total).subscribe((res: any) => {
       this.memberInfo = res;
       this.IsLoading = false;
     })
