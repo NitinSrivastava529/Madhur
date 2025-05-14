@@ -22,7 +22,7 @@
                                     <th scope="col">Member Id</th>
                                     <th scope="col">Member Name</th>
                                     <th scope="col">Mobile No</th>
-                                    <th scope="col">City</th>
+                                    <th scope="col">Date</th>
                                     <th scope="col" style="width: 16%;">CMD</th>
                                 </tr>
                             </thead>
@@ -32,7 +32,7 @@
                                         <td>{{val.memberId}}</td>
                                         <td>{{val.memberName}}</td>
                                         <td>{{val.mobileNo}}</td>
-                                        <td>{{val.city}}</td>
+                                        <td>{{val.creationDate}}</td>
                                         <td>
                                             <button type="button" onclick="$('#modalReward').modal('show')"
                                                 (click)="reward.MemberId=val.memberId;reward.level=_level;"

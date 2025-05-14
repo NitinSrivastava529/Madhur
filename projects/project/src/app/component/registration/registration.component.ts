@@ -27,7 +27,7 @@ export class RegistrationComponent implements OnInit {
   obj: any = {
     url: 'api/Auth/AddMember',
     regPin: "",
-    storeId: "",
+    storeId: "-",
     refId: "",
     memberName: "",
     password: "",

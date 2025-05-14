@@ -41,8 +41,8 @@ export class LoginComponent {
         this.IsLoading=false;
         this.router.navigateByUrl('dashboard');
       } else {
-        alert(res.response.message)
-        this.IsLoading=false;
+        // alert(res.response.message)
+        // this.IsLoading=false;
       }
     }))
 

@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col s12">
+                <div class="col s12">                  
                     <div style="display: flex;align-items:baseline;">
                         <select #type>
                             <option value="Member">Member</option>
@@ -31,6 +31,7 @@
                                     <th>Member Name</th>
                                     <th>Mobile No</th>
                                     <th>Ref Id</th>
+                                    <th>Ref Name</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -40,6 +41,7 @@
                                     <td>{{key.memberName}}</td>
                                     <td>{{key.mobileNo}}</td>
                                     <td class="text-danger">{{key.refId}}</td>
+                                    <td class="text-danger">{{key.referralName}}</td>
                                 </tr>
                             </tbody>
                         </table>
