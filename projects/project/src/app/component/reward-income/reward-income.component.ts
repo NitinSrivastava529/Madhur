@@ -30,14 +30,10 @@ export class RewardIncomeComponent implements OnInit {
     if (this.RegKey.length < 5) {
       alert('Please Enter Key');
       return;
-    };
-    if (this.StoreId.length < 5) {
-      alert('Please Enter StoreId');
-      return;
-    };
+  };
     this.IsLoading=true;
     var obj = {
-      'url': 'api/Member/Repurchase?memberId=' + localStorage.getItem('MemberId') + '&RegKey=' + this.RegKey+ '&StoreId=' + this.StoreId,
+      'url': 'api/Member/Repurchase?memberId=' + localStorage.getItem('MemberId') + '&RegKey=' + this.RegKey,
     }
     this._global.post(obj).subscribe((res) => {
       alert(res.message);

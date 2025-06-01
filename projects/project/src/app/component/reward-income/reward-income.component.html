@@ -12,8 +12,7 @@
         <div class="col s12">
           <div class="info text-center">
             <div class="flex">
-              <input type="text" name="npin" [(ngModel)]="RegKey" placeholder="Re-Purchase E-Pin" />&nbsp;&nbsp;
-              <input type="text" name="storeId" [(ngModel)]="StoreId" placeholder="Enter Store Id" />
+              <input type="text" name="npin" [(ngModel)]="RegKey" placeholder="Re-Purchase E-Pin" />&nbsp;&nbsp;             
             </div>
             <button *ngIf="!IsLoading" class="btn" (click)="Repurchase()">Submit</button>
           </div>

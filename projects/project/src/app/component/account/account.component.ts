@@ -49,7 +49,7 @@ export class AccountComponent {
 }
   GetMemberInfo(){
      this.http.get(this.global.baseUrl+'api/Member/GetMember/'+this.memberId).subscribe((res=>{
-          this.memberInfo=res;          
+          this.memberInfo=res;               
      }))
   }
 }

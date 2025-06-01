@@ -13,6 +13,11 @@
           <div class="info">
             <table class="table table-bordered">
               <tbody>
+                   <tr>
+                  <th>Joining Date </th>
+                  <th>:</th>
+                  <td>{{memberInfo.creationDate | date:'dd-MM-yyyy'}}</td>
+                </tr>
                 <tr>
                   <th>member Id</th>
                   <th>:</th>
@@ -27,7 +32,7 @@
                   <th>Mobile No </th>
                   <th>:</th>
                   <td>{{memberInfo.mobileNo}}</td>
-                </tr>
+                </tr>               
                 <tr>
                   <th>DOB </th>
                   <th>:</th>
@@ -40,7 +45,7 @@
                   <td><input type="text" class="form-control" [(ngModel)]="memberInfo.aadharNo" /></td>
                 </tr>
                 <tr>
-                  <th>Pin</th>
+                  <th>Pin Code</th>
                   <th>:</th>
                   <td><input type="text" [(ngModel)]="memberInfo.pinCode" /></td>
                 </tr>

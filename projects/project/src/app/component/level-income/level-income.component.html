@@ -21,7 +21,7 @@
                 <p>
                   <b>Remark : </b>{{val.remark}}
                 </p>
-                <div class="Approved" *ngIf="(val.isApproved=='N') && (['1','2'].includes(val.level))">
+                <div class="Approved" *ngIf="(val.isApproved=='N') && (['1'].includes(val.level))">
                     <input type="text" name="key" #key [(ngModel)]="key1" placeholder="Key 1"/>
                     <input type="text" *ngIf="(val.level=='2')" name="key2" [(ngModel)]="key2" placeholder="Key 2"/>
                     <input type="text" name="storeId" #storeId [(ngModel)]="approveReward.storeId" placeholder="Mini Store Id"/>                            
