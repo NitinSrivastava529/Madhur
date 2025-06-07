@@ -2,3 +2,8 @@
     width:60px;
     margin-left: 20px;
 }
+.offline{
+    background: #f9f8f6;
+    padding: 0px 5px 21px 8px !important;
+    margin-top: 16px;
+}

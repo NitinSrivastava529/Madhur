@@ -18,6 +18,7 @@ import { DeactiveMemberComponent } from './component/deactive-member/deactive-me
 import { ApproveSubscribeComponent } from './component/approve-subscribe/approve-subscribe.component';
 import { StoreKeyComponent } from './component/store-key/store-key.component';
 import { RewardMemberComponent } from './component/reward-member/reward-member.component';
+import { LeveldayComponent } from './component/levelday/levelday.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -31,6 +32,7 @@ export const routes: Routes = [
             { path: 'level-details', component: LevelDetailsComponent,canActivate:[authGuard] },          
             { path: 'member-details/:memberid', component: MemberDetailsComponent,canActivate:[authGuard] },
             { path: 'purchase', component: PurchaseComponent,canActivate:[authGuard] },            
+            { path: 'level-day', component: LeveldayComponent,canActivate:[authGuard] },            
             { path: 'official-plan', component:OfficialPlanComponent,canActivate:[authGuard] },            
             { path: 'terms-condition', component:TermsConditionComponent,canActivate:[authGuard] },            
             { path: 'reward-distributor', component: RewardDistributorComponent,canActivate:[authGuard] },
